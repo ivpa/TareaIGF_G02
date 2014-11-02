@@ -10,17 +10,21 @@
     	Short id = Short.parseShort(request.getParameter("id"));
     	String nombre = request.getParameter("nombre");
     	String perfil = request.getParameter("perfil");
-    	String fechaString = request.getParameter("fechaString");
+    	String fechaString = request.getParameter("fecha");
 
     	SimpleDateFormat formatoDelTexto = new SimpleDateFormat("yyyy-MM-dd");
     	 Date fechaFactura = null; //iniciamos fecha
     	 fechaFactura = formatoDelTexto.parse(fechaString);
     	 BigDecimal sueldomin = new BigDecimal(request.getParameter("sueldomin"));
-    	 BigDecimal sueldomax = new BigDecimal(request.getParameter("sueldomax1"));
-    	 
+    	 BigDecimal sueldomax = new BigDecimal(request.getParameter("sueldomax"));
+    	 String mensaje="";
+    	 Puesto puesto = new Puesto(id,nombre,perfil,fechaFactura,sueldomin,sueldomax);
     	 CtrlPuesto ctrl = new CtrlPuesto();
-    	 Puesto puesto = new Puesto(id,nombre,perfil,fecha,sueldomin,sueldomax);
-    	 if(ctrl.guardaActualiza(puesto))
+    	 
+    	 if(ctrl.crearPuesto(puesto))
+    		 mensaje="El registro fue guardado con exito";
+    	 else
+    		 mensaje = "Ya existe ese registro";
     %>
 <!DOCTYPE html>
 <html lang="en">
@@ -150,7 +154,10 @@
 
                 <div class="row">
                     <div class="col-lg-12">
-                        
+                    <div class="alert alert-success" role="alert">
+						 <%=mensaje %>
+					</div>
+                       
                     </div>
                 </div>
                 <!-- /.row -->

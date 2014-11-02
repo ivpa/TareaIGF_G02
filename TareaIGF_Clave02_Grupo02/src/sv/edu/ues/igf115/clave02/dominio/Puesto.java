@@ -20,11 +20,10 @@ public class Puesto implements Serializable{
 	private static final long serialVersionUID = 1L;
 	
 	@Id
-	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	@Column(name="id_puesto")
 	@Basic(optional=false)
 	private Short id;
-	@Column(name="nomb_puesto")
+	@Column(name="nombre_puesto")
 	@Basic(optional=false)
 	private String nombrePuesto;
 	@Column(name="perfil_puesto")

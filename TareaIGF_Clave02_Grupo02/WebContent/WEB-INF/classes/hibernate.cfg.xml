@@ -43,17 +43,8 @@
         <!-- Hibernate Annotations (and package-info.java)
         <mapping package="org.mypackage"/>
         -->
-        <mapping class="sv.edu.ues.igf115.clave2.dominio.Empleado"/>
-        <mapping class="sv.edu.ues.igf115.clave2.dominio.BoletaPago"/>
-        <mapping class="sv.edu.ues.igf115.clave2.dominio.BoletaPagoDescuento"/>
-        <mapping class="sv.edu.ues.igf115.clave2.dominio.Departamento"/>
-        <mapping class="sv.edu.ues.igf115.clave2.dominio.Genero"/>
-        <mapping class="sv.edu.ues.igf115.clave2.dominio.Municipio"/>
-        <mapping class="sv.edu.ues.igf115.clave2.dominio.Oficina"/>
-        <mapping class="sv.edu.ues.igf115.clave2.dominio.Puesto"/>
-        <mapping class="sv.edu.ues.igf115.clave2.dominio.Rol"/>
-        <mapping class="sv.edu.ues.igf115.clave2.dominio.TipoDescuento"/>
-        <mapping class="sv.edu.ues.igf115.clave2.dominio.Usuario"/>
+       
+        <mapping class="sv.edu.ues.igf115.clave02.dominio.Puesto"/>
 
     </session-factory>
 

@@ -1,3 +1,27 @@
+<%@page import="sv.edu.ues.igf115.clave02.dominio.Puesto"%>
+<%@page import="sv.edu.ues.igf115.clave02.negocio.CtrlPuesto"%>
+<%@page import="java.math.BigDecimal"%>
+<%@page import="java.text.SimpleDateFormat"%>
+<%@page import="java.util.Date"%>
+<%@ page language="java" contentType="text/html; charset=ISO-8859-1"
+    pageEncoding="ISO-8859-1"%>
+    
+    <%
+    	Short id = Short.parseShort(request.getParameter("id"));
+    	String nombre = request.getParameter("nombre");
+    	String perfil = request.getParameter("perfil");
+    	String fechaString = request.getParameter("fechaString");
+
+    	SimpleDateFormat formatoDelTexto = new SimpleDateFormat("yyyy-MM-dd");
+    	 Date fechaFactura = null; //iniciamos fecha
+    	 fechaFactura = formatoDelTexto.parse(fechaString);
+    	 BigDecimal sueldomin = new BigDecimal(request.getParameter("sueldomin"));
+    	 BigDecimal sueldomax = new BigDecimal(request.getParameter("sueldomax1"));
+    	 
+    	 CtrlPuesto ctrl = new CtrlPuesto();
+    	 Puesto puesto = new Puesto(id,nombre,perfil,fecha,sueldomin,sueldomax);
+    	 if(ctrl.guardaActualiza(puesto))
+    %>
 <!DOCTYPE html>
 <html lang="en">
 
@@ -126,15 +150,7 @@
 
                 <div class="row">
                     <div class="col-lg-12">
-                        <form action="createPuesto.jsp" method="post">
-                        	Id Puesto: <input type="text" name="id"><br>
-                        	Nombre puesto: <input type="text" name="nombre"><br>
-                        	Perfil puesto: <input type="text" name="perfil"><br>
-                        	Fecha ingreso: <input type="text" name="fecha"><br>
-                        	Sueldo minimo: <input type="text" name="sueldomin" /><br>
-                        	Sueldo Maximo: <input type="text" name="sueldomax"><br>
-                        	<input type="submit" value="Crear" class="btn btn-primary">
-                        </form>
+                        
                     </div>
                 </div>
                 <!-- /.row -->

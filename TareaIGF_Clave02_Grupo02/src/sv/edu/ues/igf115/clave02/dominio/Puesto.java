@@ -3,13 +3,16 @@ package sv.edu.ues.igf115.clave02.dominio;
 import java.io.Serializable;
 import java.math.BigDecimal;
 import java.util.Date;
+import java.util.List;
 
 import javax.persistence.Basic;
+import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.OneToMany;
 import javax.persistence.Table;
 
 
@@ -38,6 +41,9 @@ public class Puesto implements Serializable{
 	@Column(name="sueldo_max")
 	@Basic(optional=false)
 	private BigDecimal sueldoMax;
+//	@OneToMany(cascade=CascadeType.ALL,mappedBy="puesto")
+//	private List<Empleado> empleadoList;
+//	
 	
 	//Constructor que usara Hibertante
 	private Puesto(){}
@@ -135,5 +141,13 @@ public class Puesto implements Serializable{
 	public void setSueldoMax(BigDecimal sueldoMax) {
 		this.sueldoMax = sueldoMax;
 	}
+
+//	public List<Empleado> getEmpleadoList() {
+//		return empleadoList;
+//	}
+//
+//	public void setEmpleadoList(List<Empleado> empleadoList) {
+//		this.empleadoList = empleadoList;
+//	}
 
 }

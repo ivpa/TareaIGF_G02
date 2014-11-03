@@ -35,6 +35,7 @@ public class BoletaPagoDescuento implements Serializable{
 	@JoinColumn(name="id_tipodescuentos")//debe ser el nombre de la base
 	
 	private TipoDescuento tipoDescuento;
+	
 	@ManyToOne(fetch = FetchType.EAGER)
 	@JoinColumn(name = "id_boletapago")//debe ser el nombre de la base
 	private BoletaPago boletaPago;

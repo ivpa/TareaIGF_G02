@@ -13,7 +13,7 @@
     	
     	
     	 String mensaje="";
-    	 BoletaPago boleta = new BoletaPago();
+    	 BoletaPago boleta = null;
     	 CtrlBoletaPago ctrl = new CtrlBoletaPago();
     	 
     	 if(ctrl.crearBoletaPago(boleta))

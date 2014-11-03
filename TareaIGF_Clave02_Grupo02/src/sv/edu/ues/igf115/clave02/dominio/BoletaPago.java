@@ -5,9 +5,14 @@ import java.math.BigDecimal;
 import java.util.List;
 
 import javax.persistence.Basic;
+import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
+import javax.persistence.OneToMany;
 import javax.persistence.Table;
 
 
@@ -30,12 +35,18 @@ public class BoletaPago implements Serializable{
 	@Column(name = "sueldo_neto")
 	@Basic(optional = false)
 	private BigDecimal sueldoNeto;
+	
+//	@ManyToOne(fetch=FetchType.LAZY)
+//	@JoinColumn(name="id",referencedColumnName="id_empleado")
 	@Column(name = "id_empleado")
 	@Basic(optional = false)
-	private Empleado idEmpleado;
+	private String idEmpleado;
 	
 	
-	private List<Empleado> empList;
+	@OneToMany(fetch = FetchType.LAZY, mappedBy = "boletaPago")
+	private List<BoletaPagoDescuento> listBoleta;
+	
+	private BoletaPago(){}
 
 
 	/**
@@ -89,7 +100,7 @@ public class BoletaPago implements Serializable{
 	/**
 	 * @return the idEmpleado
 	 */
-	public Empleado getIdEmpleado() {
+	public String getIdEmpleado() {
 		return idEmpleado;
 	}
 
@@ -97,9 +108,37 @@ public class BoletaPago implements Serializable{
 	/**
 	 * @param idEmpleado the idEmpleado to set
 	 */
-	public void setIdEmpleado(Empleado idEmpleado) {
+	public void setIdEmpleado(String idEmpleado) {
 		this.idEmpleado = idEmpleado;
 	}
+
+
+	public List<BoletaPagoDescuento> getListBoleta() {
+		return listBoleta;
+	}
+
+
+	public void setListBoleta(List<BoletaPagoDescuento> listBoleta) {
+		this.listBoleta = listBoleta;
+	}
+
+
+	
+
+	/**
+	 * @return the idEmpleado
+	 */
+//	public Empleado getIdEmpleado() {
+//		return idEmpleado;
+//	}
+//
+//
+//	/**
+//	 * @param idEmpleado the idEmpleado to set
+//	 */
+//	public void setIdEmpleado(Empleado idEmpleado) {
+//		this.idEmpleado = idEmpleado;
+//	}
 	
 	
 

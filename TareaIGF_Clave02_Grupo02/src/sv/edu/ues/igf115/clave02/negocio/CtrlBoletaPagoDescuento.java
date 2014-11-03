@@ -9,7 +9,8 @@ public class CtrlBoletaPagoDescuento {
 BoletaPagoDescuentoDAO daoBoletaPagoDescuento = new BoletaPagoDescuentoDAO();
 	
 	public boolean crearBoletaPagoDescuento(BoletaPagoDescuento boleta){
-		if (daoBoletaPagoDescuento.daBoletaPagoDescuentoById(boleta.getId())== null) {
+		//daoBoletaPagoDescuento.daBoletaPagoDescuentoById(boleta.getId())==null
+		if (daoBoletaPagoDescuento.daBoletaPagoDescuentoById(boleta.getId())==null) {
 			
 			daoBoletaPagoDescuento.guardaActualiza(boleta);
 			return true;

@@ -5,8 +5,10 @@ import java.math.BigDecimal;
 
 
 import javax.persistence.Basic;
+import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
@@ -22,24 +24,25 @@ public class BoletaPagoDescuento implements Serializable{
 	private static final long serialVersionUID = 1L;
 	
 	@Id
-	@Column(name = "id_boletapagosdescuento")
+	@Column(name = "id_boletapagodescuento")
 	@Basic(optional = false)
-	private int id;
+	private Integer id;
 	@Column(name = "monto_descuento")
 	@Basic(optional = false)
 	private BigDecimal montoDescuento;
 	
-	@JoinColumn(name="id",referencedColumnName="id_tiposdescuentos")
-	@ManyToOne(optional = false)
+	@ManyToOne
+	@JoinColumn(name="id_tipodescuentos")//debe ser el nombre de la base
+	
 	private TipoDescuento tipoDescuento;
-	@JoinColumn(name="id",referencedColumnName="id_boletapago")
-	@ManyToOne(optional = false)
+	@ManyToOne(fetch = FetchType.EAGER)
+	@JoinColumn(name = "id_boletapago")//debe ser el nombre de la base
 	private BoletaPago boletaPago;
 	
 	
 	private BoletaPagoDescuento(){}
 	
-	public BoletaPagoDescuento(int id,BoletaPago bp,TipoDescuento tpd,BigDecimal monto){
+	public BoletaPagoDescuento(Integer id,BigDecimal monto,BoletaPago bp,TipoDescuento tpd){
 		this.id = id;
 		this.boletaPago = bp;
 		this.tipoDescuento = tpd;

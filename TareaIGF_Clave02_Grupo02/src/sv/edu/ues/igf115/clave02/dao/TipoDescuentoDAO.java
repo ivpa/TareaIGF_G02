@@ -62,7 +62,7 @@ public void eliminar(TipoDescuento tipoDescuento){
 	}
 }
 
-public TipoDescuento daTipoDescuentoById(Short idDep){
+public TipoDescuento daTipoDescuentoById(String idDep){
 	sesion = sessionfactory.openSession();
 	Criteria criteria=sesion.createCriteria(TipoDescuento.class)
 						.add(Restrictions.idEq(idDep));

@@ -4,8 +4,7 @@
 <%@page import="sv.edu.ues.igf115.clave02.negocio.CtrlBoletaPagoDescuento"%>
 <%@page import="sv.edu.ues.igf115.clave02.dao.BoletaPagoDAO"%>
 <%@page import="sv.edu.ues.igf115.clave02.dominio.BoletaPago"%>
-<%@page import="sv.edu.ues.igf115.clave02.dominio.Puesto"%>
-<%@page import="sv.edu.ues.igf115.clave02.negocio.CtrlPuesto"%>
+
 <%@page import="java.math.BigDecimal"%>
 <%@page import="java.text.SimpleDateFormat"%>
 <%@page import="java.util.Date"%>
@@ -16,10 +15,10 @@
     	Integer id = Integer.parseInt(request.getParameter("id"));
     	
     	BoletaPago bp = new BoletaPagoDAO().daBoletaPagoById(new Short(request.getParameter("idbp")));
-    	TipoDescuento tpd = new TipoDescuentoDAO().daTipoDescuentoById(new Short(request.getParameter("idtd")));
-    	BigDecimal monto = new BigDecimal(request.getParameter("monto"));
+    	TipoDescuento tpd = new TipoDescuentoDAO().daTipoDescuentoById((request.getParameter("idtd")));
+    	BigDecimal monto = new BigDecimal(request.getParameter("descuento"));
     	
-    	BoletaPagoDescuento bpd= new BoletaPagoDescuento(id,bp,tpd,monto);
+    	BoletaPagoDescuento bpd= new BoletaPagoDescuento(id,monto,bp,tpd);
     	String mensaje="";
     	 CtrlBoletaPagoDescuento ctrl = new CtrlBoletaPagoDescuento();
     	 

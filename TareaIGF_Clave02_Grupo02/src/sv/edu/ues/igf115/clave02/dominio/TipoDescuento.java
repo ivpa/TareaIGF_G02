@@ -3,11 +3,16 @@ package sv.edu.ues.igf115.clave02.dominio;
 import java.io.Serializable;
 import java.math.BigDecimal;
 import java.util.Date;
+import java.util.List;
 
 import javax.persistence.Basic;
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.OneToMany;
 import javax.persistence.Table;
 
 
@@ -20,7 +25,8 @@ public class TipoDescuento implements Serializable {
 	 */
 	private static final long serialVersionUID = 1L;
 	@Id
-	@Column(name="id_tiposdescuentos")
+	
+	@Column(name="id_tipodescuentos")
 	@Basic(optional=false)
 	private String id;
 	@Column(name="descripcion")
@@ -32,6 +38,10 @@ public class TipoDescuento implements Serializable {
 	@Column(name = "fecha_ingreso")
 	@Basic(optional = false)
 	private Date fecha_ing;
+	
+	@OneToMany(fetch = FetchType.LAZY, mappedBy = "tipoDescuento")
+	private List<BoletaPagoDescuento> listBoletaPagoDescuento;
+	private TipoDescuento(){}
 	/**
 	 * @return the id
 	 */
@@ -79,6 +89,12 @@ public class TipoDescuento implements Serializable {
 	 */
 	public void setFecha_ing(Date fecha_ing) {
 		this.fecha_ing = fecha_ing;
+	}
+	public List<BoletaPagoDescuento> getListBoletaPagoDescuento() {
+		return listBoletaPagoDescuento;
+	}
+	public void setListBoletaPagoDescuento(List<BoletaPagoDescuento> listBoletaPagoDescuento) {
+		this.listBoletaPagoDescuento = listBoletaPagoDescuento;
 	}
 	
 

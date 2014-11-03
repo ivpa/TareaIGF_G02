@@ -62,7 +62,7 @@ public void eliminar(BoletaPagoDescuento boletaPagoDescuento){
 	}
 }
 
-public BoletaPagoDescuento daBoletaPagoDescuentoById(int idDep){
+public BoletaPagoDescuento daBoletaPagoDescuentoById(Integer idDep){
 	sesion = sessionfactory.openSession();
 	Criteria criteria=sesion.createCriteria(BoletaPagoDescuento.class)
 						.add(Restrictions.idEq(idDep));

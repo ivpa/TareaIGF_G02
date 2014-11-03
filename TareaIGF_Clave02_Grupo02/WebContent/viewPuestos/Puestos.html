@@ -1,31 +1,3 @@
-<%@page import="sv.edu.ues.igf115.clave02.dominio.Puesto"%>
-<%@page import="sv.edu.ues.igf115.clave02.negocio.CtrlPuesto"%>
-<%@page import="java.math.BigDecimal"%>
-<%@page import="java.text.SimpleDateFormat"%>
-<%@page import="java.util.Date"%>
-<%@ page language="java" contentType="text/html; charset=ISO-8859-1"
-    pageEncoding="ISO-8859-1"%>
-    
-    <%
-    	Short id = Short.parseShort(request.getParameter("id"));
-    	String nombre = request.getParameter("nombre");
-    	String perfil = request.getParameter("perfil");
-    	String fechaString = request.getParameter("fecha");
-
-    	SimpleDateFormat formatoDelTexto = new SimpleDateFormat("yyyy-MM-dd");
-    	 Date fechaFactura = null; //iniciamos fecha
-    	 fechaFactura = formatoDelTexto.parse(fechaString);
-    	 BigDecimal sueldomin = new BigDecimal(request.getParameter("sueldomin"));
-    	 BigDecimal sueldomax = new BigDecimal(request.getParameter("sueldomax"));
-    	 String mensaje="";
-    	 Puesto puesto = new Puesto(id,nombre,perfil,fechaFactura,sueldomin,sueldomax);
-    	 CtrlPuesto ctrl = new CtrlPuesto();
-    	 
-    	 if(ctrl.crearPuesto(puesto))
-    		 mensaje="El registro fue guardado con exito";
-    	 else
-    		 mensaje = "Ya existe ese registro";
-    %>
 <!DOCTYPE html>
 <html lang="en">
 
@@ -40,16 +12,16 @@
     <title>Ingenieria de Software </title>
 
     <!-- Bootstrap Core CSS -->
-    <link href="css/bootstrap.min.css" rel="stylesheet">
+    <link href="../css/bootstrap.min.css" rel="stylesheet">
 
     <!-- Custom CSS -->
-    <link href="css/sb-admin.css" rel="stylesheet">
+    <link href="../css/sb-admin.css" rel="stylesheet">
 
     <!-- Morris Charts CSS -->
-    <link href="css/plugins/morris.css" rel="stylesheet">
+    <link href="../css/plugins/morris.css" rel="stylesheet">
 
     <!-- Custom Fonts -->
-    <link href="font-awesome-4.1.0/css/font-awesome.min.css" rel="stylesheet" type="text/css">
+    <link href="../font-awesome-4.1.0/css/font-awesome.min.css" rel="stylesheet" type="text/css">
 
     <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
     <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
@@ -110,7 +82,7 @@
                                 <a href="#">Empleado</a>
                             </li>
                             <li>
-                                <a href="#">Puesto</a>
+                                <a href="viewPuestos/Puestos.html">Puesto</a>
                             </li>
                             <li>
                                 <a href="#">Boleta Pago</a>
@@ -145,7 +117,7 @@
                         </h1>
                         <ol class="breadcrumb">
                             <li class="active">
-                                <i class="fa fa-dashboard"></i> Crear puesto
+                                <i class="fa fa-dashboard"></i> Panel Puesto
                             </li>
                         </ol>
                     </div>
@@ -154,10 +126,10 @@
 
                 <div class="row">
                     <div class="col-lg-12">
-                    <div class="alert alert-success" role="alert">
-						 <%=mensaje %>
-					</div>
-                       
+                       <a href="createPuesto.html" class="btn btn-primary btn-lg" role="button">Insertar puesto</a>
+                       <a href="updatePuesto.html" class="btn btn-primary btn-lg" role="button">Modificar puesto</a>
+                       <a href="deletePuesto.html" class="btn btn-primary btn-lg" role="button">Eliminar puesto</a>
+                       <a href="showPuestos.jsp" class="btn btn-primary btn-lg" role="button">Mostrar puestos</a>
                     </div>
                 </div>
                 <!-- /.row -->
@@ -179,15 +151,15 @@
     <!-- /#wrapper -->
 
     <!-- jQuery Version 1.11.0 -->
-    <script src="js/jquery-1.11.0.js"></script>
+    <script src="../js/jquery-1.11.0.js"></script>
 
     <!-- Bootstrap Core JavaScript -->
-    <script src="js/bootstrap.min.js"></script>
+    <script src="../js/bootstrap.min.js"></script>
 
     <!-- Morris Charts JavaScript -->
-    <script src="js/plugins/morris/raphael.min.js"></script>
-    <script src="js/plugins/morris/morris.min.js"></script>
-    <script src="js/plugins/morris/morris-data.js"></script>
+    <script src="../js/plugins/morris/raphael.min.js"></script>
+    <script src="../js/plugins/morris/morris.min.js"></script>
+    <script src="../js/plugins/morris/morris-data.js"></script>
 
 </body>
 

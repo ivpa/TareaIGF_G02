@@ -67,6 +67,7 @@ public TipoDescuento daTipoDescuentoById(String idDep){
 	Criteria criteria=sesion.createCriteria(TipoDescuento.class)
 						.add(Restrictions.idEq(idDep));
 	TipoDescuento id =(TipoDescuento)criteria.uniqueResult();
+	//quite un comentario abajo
 	//TipoDescuento id = (TipoDescuento) sesion.get(TipoDescuento.class, new Short(idDep));
 	sesion.close();
 	return id;

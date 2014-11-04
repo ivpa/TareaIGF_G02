@@ -45,9 +45,18 @@ public class TipoDescuento implements Serializable {
 	/**
 	 * @return the id
 	 */
+	public TipoDescuento(String id, String descripcion,
+			BigDecimal porcentaje_Desc, Date fecha_ing) {
+		this.id = id;
+		this.descripcion = descripcion;
+		this.porcentaje_Desc = porcentaje_Desc;
+		this.fecha_ing = fecha_ing;
+		
+	}
 	public String getId() {
 		return id;
 	}
+	
 	/**
 	 * @param id the id to set
 	 */

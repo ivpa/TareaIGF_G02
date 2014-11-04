@@ -10,37 +10,23 @@
 String id = request.getParameter("id") ;
 String nit = request.getParameter("nit") ;
 String dui = request.getParameter("dui") ;
-String nombres = request.getParameter("codigomunicipio") ;
+String nombres = request.getParameter("nombres") ;
 String apellido_paterno = request.getParameter("apellido_paterno") ;
 String apellido_materno = request.getParameter("apellido_materno") ;
-
-SimpleDateFormat formatter = new SimpleDateFormat("dd/MM/yyyy");
-String dateInString = request.getParameter("fecha_nacimiento");
-Date fecha_nacimiento= new Date();
-try {
-	fecha_nacimiento = formatter.parse(dateInString);	
-}catch(Exception e){	
-}
-
-dateInString = request.getParameter("fecha_ingreso");
-Date fecha_ingreso= new Date();
-try {
-	fecha_ingreso = formatter.parse(dateInString);	
-}catch(Exception e){
-	
-}
-
-
-BigDecimal sueldo =  BigDecimal.valueOf(Double.parseDouble(request.getParameter("sueldo")));
+String fecha_nacimiento = request.getParameter("fecha_nacimiento") ;
+String fecha_ingreso = request.getParameter("fecha_ingreso") ;
+BigDecimal sueldo = new BigDecimal(request.getParameter("sueldo"));
 String e_mail = request.getParameter("e_mail") ;
 String telefono = request.getParameter("telefono") ;
 String activo = request.getParameter("activo") ;
-Short id_puesto =  Short.parseShort(request.getParameter("id_puesto")) ;
+Short id_puesto =  new Short(request.getParameter("id_puesto"));
 String id_genero = request.getParameter("id_genero") ;
 String id_oficina = request.getParameter("id_oficina") ;
+String id_jefe = request.getParameter("id_jefe") ;
+
       
       CtrlEmpleado ctrlEmpleado = new CtrlEmpleado() ;
-      boolean exito = ctrlEmpleado.crearEmpleado(id, nit, dui, nombres, apellido_paterno, apellido_materno, fecha_nacimiento, fecha_ingreso, sueldo, e_mail, telefono, activo, id_puesto, id_genero, id_oficina);
+      boolean exito = ctrlEmpleado.crearEmpleado(id, nit, dui, nombres, apellido_paterno, apellido_materno, fecha_nacimiento, fecha_ingreso, sueldo, e_mail, telefono, activo, id_puesto, id_genero, id_oficina, id_jefe);
       
       String mensaje ;
       if (exito)

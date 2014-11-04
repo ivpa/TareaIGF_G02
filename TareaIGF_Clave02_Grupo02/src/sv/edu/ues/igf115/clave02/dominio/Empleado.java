@@ -45,11 +45,11 @@ public class Empleado implements Serializable{
 	//importe java.util para Date
 	@Column(name = "fecha_nacimiento")
 	@Basic(optional = false)
-	private Date fecha_nacimiento;
+	private String fecha_nacimiento;
 	
 	@Column(name = "fecha_ingreso")
 	@Basic(optional = false)
-	private Date fecha_ingreso;
+	private String fecha_ingreso;
 	
 	@Column(name = "sueldo")
 	@Basic(optional = false)
@@ -79,6 +79,10 @@ public class Empleado implements Serializable{
 	@Basic(optional = false)
 	private String id_oficina;
 	
+	@Column(name = "id_jefe")
+	@Basic(optional = true)
+	private String id_jefe;
+	
 	private Empleado()
 	{
 		//ocupado por hibernate
@@ -88,10 +92,10 @@ public class Empleado implements Serializable{
 
 	public Empleado(String id, String nit, String dui, String nombres,
 			String apellido_paterno, String apellido_materno,
-			Date fecha_nacimiento, Date fecha_ingreso, BigDecimal sueldo,
+			String fecha_nacimiento, String fecha_ingreso, BigDecimal sueldo,
 			String e_mail, String telefono, String activo, Short id_puesto,
-			String id_genero, String id_oficina) {
-		super();
+			String id_genero, String id_oficina, String id_jefe) {
+		
 		this.id = id;
 		this.nit = nit;
 		this.dui = dui;
@@ -107,6 +111,24 @@ public class Empleado implements Serializable{
 		this.id_puesto = id_puesto;
 		this.id_genero = id_genero;
 		this.id_oficina = id_oficina;
+		this.id_jefe = id_jefe;
+		
+		//this.id = "5";
+		//this.nit = "1";
+		//this.dui = "1";
+		//this.nombres = "1";
+		//this.apellido_paterno = "1";
+		//this.apellido_materno = "1";
+		//this.fecha_nacimiento = "2014-01-01";
+		//this.fecha_ingreso = "2014-01-01";
+		//this.sueldo = new BigDecimal("1");
+		//this.e_mail = "1";
+		//this.telefono = "1";
+		//this.activo = "1";
+		//this.id_puesto = new Short("1");
+		//this.id_genero = "1";
+		//this.id_oficina = "1";
+		//this.id_jefe = null;
 	}
 
 
@@ -159,19 +181,19 @@ public class Empleado implements Serializable{
 		this.apellido_materno = apellido_materno;
 	}
 
-	public Date getFecha_nacimiento() {
+	public String getFecha_nacimiento() {
 		return fecha_nacimiento;
 	}
 
-	public void setFecha_nacimiento(Date fecha_nacimiento) {
+	public void setFecha_nacimiento(String fecha_nacimiento) {
 		this.fecha_nacimiento = fecha_nacimiento;
 	}
 
-	public Date getFecha_ingreso() {
+	public String getFecha_ingreso() {
 		return fecha_ingreso;
 	}
 
-	public void setFecha_ingreso(Date fecha_ingreso) {
+	public void setFecha_ingreso(String fecha_ingreso) {
 		this.fecha_ingreso = fecha_ingreso;
 	}
 
@@ -229,6 +251,14 @@ public class Empleado implements Serializable{
 
 	public void setId_oficina(String id_oficina) {
 		this.id_oficina = id_oficina;
+	}
+	
+	public String getId_jefe() {
+		return id_jefe;
+	}
+
+	public void setId_jefe(String id_jefe) {
+		this.id_jefe = id_jefe;
 	}
 
 	public static long getSerialversionuid() {

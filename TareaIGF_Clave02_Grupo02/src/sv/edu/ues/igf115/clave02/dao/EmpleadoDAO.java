@@ -35,7 +35,7 @@ public class EmpleadoDAO {
 	public void guardaActualiza(Empleado empleado){
 		try {
 			iniciaOperacion();
-			sesion.saveOrUpdate(empleado);
+			sesion.save(empleado);
 			tx.commit();
 			sesion.flush();
 		} catch (HibernateException he) {

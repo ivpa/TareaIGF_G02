@@ -19,9 +19,13 @@ private EmpleadoDAO daoEmpleado = new EmpleadoDAO();
 
 /*String id, String nit, String dui, String nombres, String apellido_paterno, String apellido_materno, Date fecha_nacimiento, Date fecha_ingreso, BigDecimal sueldo, String e_mail, String telefono, String activo, Short id_puesto, String id_genero, String id_oficina*/
 
-	public boolean crearEmpleado(String id, String nit, String dui, String nombres, String apellido_paterno, String apellido_materno, Date fecha_nacimiento, Date fecha_ingreso, BigDecimal sueldo, String e_mail, String telefono, String activo, Short id_puesto, String id_genero, String id_oficina) {
+	public boolean crearEmpleado(String id, String nit, String dui, String nombres, String apellido_paterno, String apellido_materno, String fecha_nacimiento, String fecha_ingreso, BigDecimal sueldo, String e_mail, String telefono, String activo, Short id_puesto, String id_genero, String id_oficina, String id_jefe) {
 		if (daoEmpleado.daEmpleadoById(id) == null) {
-			Empleado empleado = new Empleado(id, nit, dui, nombres, apellido_paterno, apellido_materno, fecha_nacimiento, fecha_ingreso, sueldo, e_mail, telefono, activo, id_puesto, id_genero, id_oficina);
+			
+			if(id_jefe=="")
+			  id_jefe=null;
+			
+			Empleado empleado = new Empleado(id, nit, dui, nombres, apellido_paterno, apellido_materno, fecha_nacimiento, fecha_ingreso, sueldo, e_mail, telefono, activo, id_puesto, id_genero, id_oficina, id_jefe);
 			daoEmpleado.guardaActualiza(empleado);
 			return true; //es nuevo
 		} else
@@ -42,7 +46,7 @@ private EmpleadoDAO daoEmpleado = new EmpleadoDAO();
 	return retornar;	
 	}
 
-	public boolean modificarCatMunicipio(String id, String nit, String dui, String nombres, String apellido_paterno, String apellido_materno, Date fecha_nacimiento, Date fecha_ingreso, BigDecimal sueldo, String e_mail, String telefono, String activo, Short id_puesto, String id_genero, String id_oficina){
+	public boolean modificarCatMunicipio(String id, String nit, String dui, String nombres, String apellido_paterno, String apellido_materno, String fecha_nacimiento, String fecha_ingreso, BigDecimal sueldo, String e_mail, String telefono, String activo, Short id_puesto, String id_genero, String id_oficina, String id_jefe){
 		if (daoEmpleado.daEmpleadoById(id) != null) {
 			Empleado empleado = daoEmpleado.daEmpleadoById(id);	
 			
@@ -61,6 +65,7 @@ private EmpleadoDAO daoEmpleado = new EmpleadoDAO();
 			empleado.setId_puesto(id_puesto);
 			empleado.setId_genero(id_genero);
 			empleado.setId_oficina(id_oficina);
+			empleado.setId_jefe(id_jefe);
 			
 			daoEmpleado.guardaActualiza(empleado);
 			return true;

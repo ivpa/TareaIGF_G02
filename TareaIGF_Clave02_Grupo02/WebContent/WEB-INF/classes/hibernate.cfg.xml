@@ -45,7 +45,7 @@
         -->
        
         <mapping class="sv.edu.ues.igf115.clave02.dominio.Puesto"/>
-      
+      	<mapping class="sv.edu.ues.igf115.clave02.dominio.Empleado"/>
         <mapping class="sv.edu.ues.igf115.clave02.dominio.BoletaPago"/>
         <mapping class="sv.edu.ues.igf115.clave02.dominio.BoletaPagoDescuento"/>
         <mapping class="sv.edu.ues.igf115.clave02.dominio.TipoDescuento"/>

@@ -34,22 +34,23 @@ private EmpleadoDAO daoEmpleado = new EmpleadoDAO();
 
 	public boolean eliminarEmpleado(String id)
 	{
-		boolean retornar = false;
-		if (daoEmpleado.daEmpleadoById(id) != null) {
-			Empleado empleado = daoEmpleado.daEmpleadoById(id);
-			if(daoEmpleado.daEmpleadoById(id) == null ){
-			
-			daoEmpleado.eliminar(empleado);
-			retornar = true;}
-		}else 
-			retornar = false;
-	return retornar;	
+		
+       if (daoEmpleado.daEmpleadoById(id) != null) {
+    	   Empleado empleado = daoEmpleado.daEmpleadoById(id);
+		   daoEmpleado.eliminar(empleado);
+			return true; //borrar
+		} else
+			return false; // no existe
+		
 	}
 
-	public boolean modificarCatMunicipio(String id, String nit, String dui, String nombres, String apellido_paterno, String apellido_materno, String fecha_nacimiento, String fecha_ingreso, BigDecimal sueldo, String e_mail, String telefono, String activo, Short id_puesto, String id_genero, String id_oficina, String id_jefe){
+	public boolean modificarEmpleado(String id, String nit, String dui, String nombres, String apellido_paterno, String apellido_materno, String fecha_nacimiento, String fecha_ingreso, BigDecimal sueldo, String e_mail, String telefono, String activo, Short id_puesto, String id_genero, String id_oficina, String id_jefe){
+		
+		if(id_jefe=="")
+			id_jefe=null;
+		
 		if (daoEmpleado.daEmpleadoById(id) != null) {
 			Empleado empleado = daoEmpleado.daEmpleadoById(id);	
-			
 			empleado.setId(id);
 			empleado.setNit(nit);
 			empleado.setDui(dui);
@@ -67,10 +68,20 @@ private EmpleadoDAO daoEmpleado = new EmpleadoDAO();
 			empleado.setId_oficina(id_oficina);
 			empleado.setId_jefe(id_jefe);
 			
-			daoEmpleado.guardaActualiza(empleado);
+			daoEmpleado.actualiza(empleado);
 			return true;
 		}else
 			return false;
+	}
+	
+	public Empleado consultarEmpleado(String id){
+		Empleado aux = null;
+		
+		if(daoEmpleado.daEmpleadoById(id) != null){
+			aux = daEmpleadoById(id);
+		}
+		
+		return aux;
 	}
 
 	public List<Empleado> daCatMunicipio(){

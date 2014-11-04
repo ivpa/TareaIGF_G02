@@ -46,6 +46,21 @@ public class EmpleadoDAO {
 			sesion.close();
 		}
 	}
+	
+	public void actualiza(Empleado empleado){
+		try {
+			iniciaOperacion();
+			sesion.update(empleado);
+			tx.commit();
+			sesion.flush();
+		} catch (HibernateException he) {
+			// TODO: handle exception
+			manejaExcepcion(he);
+			throw he;
+		}finally{
+			sesion.close();
+		}
+	}
 
 	public void eliminar(Empleado empleado){
 		try {

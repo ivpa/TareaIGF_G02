@@ -1,30 +1,3 @@
-<%@page import="java.util.List"%>
-<%@page import="sv.edu.ues.igf115.clave02.negocio.CtrlPuesto"%>
-<%@page import="sv.edu.ues.igf115.clave02.dominio.*" %>
-<%@ page language="java" contentType="text/html; charset=ISO-8859-1"
-    pageEncoding="ISO-8859-1"%>
-<%
-	String mensaje="<table class=\"table\" ><tr><b>"+"<td>id Puesto</td> "+"<td>Nombre</td> "+"<td>Perfil </td>"+"<td>Fecha </td>"+"<td> Sueldo min </td>"+"<td>Sueldo max</td>"+"</b></tr>";
-	CtrlPuesto ctrl = new CtrlPuesto();
-	List<Puesto> listaPuesto = ctrl.listaPuestos();
-	
-	int numeroPuesto = listaPuesto.size();
-	
-	if(listaPuesto.isEmpty())
-		mensaje = "No hay puestos";
-	else
-	{
-		Puesto puestoActual;
-		for(int i=0;i<numeroPuesto;i++){
-			puestoActual = (Puesto)listaPuesto.get(i);
-			mensaje+="<tr>"+"<td>"+puestoActual.getId()+"</td>"+"<td>"+puestoActual.getNombrePuesto()+"</td> "
-					+"<td>"+puestoActual.getPerfilPuesto()+"</td>"+"<td>"+puestoActual.getFechaIng().toString().substring(0,10)+"</td>"
-					+"<td>"+puestoActual.getSueldoMin()+"</td> "+"<td>"+puestoActual.getSueldoMax()+"</td> </tr>";
-					
-		}
-		mensaje+="</table>";
-	}
-%>
 <!DOCTYPE html>
 <html lang="en">
 
@@ -73,7 +46,7 @@
                     <span class="icon-bar"></span>
                     <span class="icon-bar"></span>
                 </button>
-                <a class="navbar-brand" href="../index.html">Inicio</a>
+                <a class="navbar-brand" href="index.html">Inicio</a>
             </div>
             <!-- Top Menu Items -->
             <ul class="nav navbar-right top-nav">
@@ -109,7 +82,7 @@
                                 <a href="#">Empleado</a>
                             </li>
                             <li>
-                                <a href="Puestos.html">Puesto</a>
+                                <a href="viewPuestos/Puestos.html">Puesto</a>
                             </li>
                             <li>
                                 <a href="#">Boleta Pago</a>
@@ -144,7 +117,7 @@
                         </h1>
                         <ol class="breadcrumb">
                             <li class="active">
-                                <i class="fa fa-dashboard"></i>Mostrar  puesto
+                                <i class="fa fa-dashboard"></i> Eliminar Puesto
                             </li>
                         </ol>
                     </div>
@@ -153,7 +126,13 @@
 
                 <div class="row">
                     <div class="col-lg-12">
-                       <%= mensaje %>
+                      <h3>Ingrese id del puesto a eliminar</h3>
+                      	<form action="deletePuesto.jsp" method="post">
+                      		Id puesto:<br>
+                      		<input type="text" name="id"><br><br>
+                      		<input type="submit" class="btn btn-primary" value="Aceptar"/>
+                     	 
+                     	</form>
                     </div>
                 </div>
                 <!-- /.row -->

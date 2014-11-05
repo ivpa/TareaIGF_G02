@@ -12,72 +12,89 @@ import org.hibernate.criterion.Restrictions;
 import sv.edu.ues.igf115.clave02.datos.HibernateUtil;
 import sv.edu.ues.igf115.clave02.dominio.Puesto;
 
+
 public class PuestoDAO {
-
-private HibernateUtil hibernateUtil = new HibernateUtil();
-private SessionFactory sessionfactory = hibernateUtil.getSessionFactory();
-private Session sesion;
-private Transaction tx;
-
-private void iniciaOperacion() throws HibernateException {
-	sesion = sessionfactory.openSession();
-	tx = sesion.beginTransaction();
-}
-
-private void manejaExcepcion(HibernateException he) throws
-HibernateException{
-	tx.rollback();
-	throw new HibernateException("Ocurrio un error en la capa DAO",he);
-}
-
-
-public void guardaActualiza(Puesto puesto){
-	try {
-		iniciaOperacion();
-		sesion.saveOrUpdate(puesto);
-		tx.commit();
-		sesion.flush();
-	} catch (HibernateException he) {
-		// TODO: handle exception
-		manejaExcepcion(he);
-		throw he;
-	}finally{
-		sesion.close();
+	private HibernateUtil hibernateUtil = new HibernateUtil();
+	private SessionFactory sessionfactory = hibernateUtil.getSessionFactory();
+	private Session sesion;
+	private Transaction tx;
+	
+	
+	
+	private void iniciaOperacion() throws HibernateException {
+		sesion = sessionfactory.openSession();
+		tx = sesion.beginTransaction();
 	}
-}
 
-public void eliminar(Puesto Puesto){
-	try {
-		iniciaOperacion();
-		sesion.delete(Puesto);
-		tx.commit();
-		sesion.flush();
-	} catch (HibernateException he) {
-		// TODO: handle exception
-		manejaExcepcion(he);
-		throw he;
-	}finally{
-		sesion.close();
+	private void manejaExcepcion(HibernateException he) throws HibernateException{
+		tx.rollback();
+		throw new HibernateException("Ocurrio un error en la capa DAO",he);
 	}
-}
+	
 
-public Puesto daPuestoById(Short idDep){
-	sesion = sessionfactory.openSession();
-	Criteria criteria=sesion.createCriteria(Puesto.class)
-						.add(Restrictions.idEq(idDep));
-	Puesto id =(Puesto)criteria.uniqueResult();
-	//Puesto id = (Puesto) sesion.get(Puesto.class, new Short(idDep));
-	sesion.close();
-	return id;
-}
+	public void guardaActualiza(Puesto puesto){
+		try {
+			iniciaOperacion();
+			sesion.save(puesto);
+			tx.commit();
+			sesion.flush();
+		} catch (HibernateException he) {
+			// TODO: handle exception
+			manejaExcepcion(he);
+			throw he;
+		}finally{
+			sesion.close();
+		}
+	}
+	
+	public void actualiza(Puesto puesto){
+		try {
+			iniciaOperacion();
+			sesion.update(puesto);
+			tx.commit();
+			sesion.flush();
+		} catch (HibernateException he) {
+			// TODO: handle exception
+			manejaExcepcion(he);
+			throw he;
+		}finally{
+			sesion.close();
+		}
+	}
 
-public List<Puesto> daPuestos(){
-	sesion = sessionfactory.openSession();
-//	Query query = sesion.getNamedQuery("Puestos.findAll");
-//	List<Puesto> Puestos = query.list();
-	Criteria criteria = sesion.createCriteria(Puesto.class);
-	List<Puesto> Puestos = criteria.list();
-	sesion.close();
-	return Puestos;
-}
+	public void eliminar(Puesto Puesto){
+		try {
+			iniciaOperacion();
+			sesion.delete(Puesto);
+			tx.commit();
+			sesion.flush();
+		} catch (HibernateException he) {
+			// TODO: handle exception
+			manejaExcepcion(he);
+			throw he;
+		}finally{
+			sesion.close();
+		}
+	}
+
+	public Puesto daPuestoById(Short id_Puesto){
+		sesion = sessionfactory.openSession();
+		Criteria criteria=sesion.createCriteria(Puesto.class)
+							.add(Restrictions.idEq(id_Puesto));
+		Puesto id =(Puesto)criteria.uniqueResult();
+		sesion.close();
+		return id;
+	}
+
+	public List<Puesto> daPuestos(){
+		sesion = sessionfactory.openSession();
+		Criteria criteria = sesion.createCriteria(Puesto.class);
+		List<Puesto> puestos = criteria.list();
+		sesion.close();
+		return puestos;
+	}
+
+	
+	
+	
 }

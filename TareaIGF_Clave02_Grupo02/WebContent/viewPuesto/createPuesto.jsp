@@ -3,8 +3,7 @@
 <%@page import="java.math.BigDecimal"%>
 <%@page import="java.text.SimpleDateFormat"%>
 <%@page import="java.util.Date"%>
-<%@ page language="java" contentType="text/html; charset=ISO-8859-1"
-    pageEncoding="ISO-8859-1"%>
+<%@ page language="java" contentType="text/html; charset=ISO-8859-1" pageEncoding="ISO-8859-1"%>
     
     <%
     	Short id = Short.parseShort(request.getParameter("id"));
@@ -15,12 +14,15 @@
     	SimpleDateFormat formatoDelTexto = new SimpleDateFormat("yyyy-MM-dd");
     	 Date fechaFactura = null; //iniciamos fecha
     	 fechaFactura = formatoDelTexto.parse(fechaString);
+    	 
     	 BigDecimal sueldomin = new BigDecimal(request.getParameter("sueldomin"));
     	 BigDecimal sueldomax = new BigDecimal(request.getParameter("sueldomax"));
     	 String mensaje="";
     	 Puesto puesto = new Puesto(id,nombre,perfil,fechaFactura,sueldomin,sueldomax);
-    	 CtrlPuesto ctrl = new CtrlPuesto();
-    	 
+    	CtrlPuesto ctrl = new CtrlPuesto(); 
+ 	//ApplicationContext ac=
+    	//		WebApplicationContextUtils.getRequiredWebApplicationContext(getServletContext());
+    	//CtrlPuesto ctrl = (CtrlPuesto)ac.getBean("ctrlPuesto");
     	 if(ctrl.crearPuesto(puesto))
     		 mensaje="El registro fue guardado con exito";
     	 else

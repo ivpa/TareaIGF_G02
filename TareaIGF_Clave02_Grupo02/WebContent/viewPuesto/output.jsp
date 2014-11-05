@@ -1,18 +1,34 @@
-<%@page import="sv.edu.ues.igf115.clave02.dao.PuestoDAO"%>
+<%@page import="sv.edu.ues.igf115.clave02.negocio.CtrlPuesto"%>
+<%@page import="java.math.BigDecimal"%>
 <%@page import="sv.edu.ues.igf115.clave02.dominio.Puesto"%>
+<%@page import="java.util.Date"%>
+<%@page import="java.text.SimpleDateFormat"%>
+<%@page import="java.lang.Short" %>
 <%@ page language="java" contentType="text/html; charset=ISO-8859-1"
     pageEncoding="ISO-8859-1"%>
     
-<%
-	String mensaje="<h3>Modificar puesto</h3>";
-	String id = request.getParameter("id");
-	Puesto puesto = new PuestoDAO().daPuestoById(new Short(id));
-	
-	
-	
-	
-%>    
-
+ <%
+ 	String mensaje ="Se actualizo con exito";
+ 	String fechaString = request.getParameter("fecha");
+ 	SimpleDateFormat formato = new SimpleDateFormat("yyyy-MM-dd");
+ 	Date fecha = null;
+ 	fecha = formato.parse(fechaString);
+ 	Short id = Short.parseShort(request.getParameter("id"));
+ 	Puesto puesto = new Puesto(id,
+ 								request.getParameter("nombre"),
+ 								request.getParameter("perfil"),
+ 								fecha,
+ 								new BigDecimal(request.getParameter("sueldomin")),
+ 								new BigDecimal(request.getParameter("sueldomin")));
+ 	
+ 	CtrlPuesto ctrl = new CtrlPuesto();
+ 	if(ctrl.actualizaPuesto(puesto))
+ 		mensaje ="Registro actualizod";
+ 	else
+ 	{
+ 		mensaje ="No se pudo actualizar";
+ 	}
+ %>   
 <!DOCTYPE html>
 <html lang="en">
 
@@ -140,12 +156,11 @@
                 <!-- /.row -->
 
                 <div class="row">
-                    <div class="col-lg-12">
-                       <%=mensaje %>
-                       <%
-                       if(puesto!=null)
-                    	   
-                       %>
+                    <div class="col-lg-12" >
+                    <div class="alert alert-success" role="alert"">
+                    <%=mensaje %>
+                    </div>		
+                      
                     </div>
                 </div>
                 <!-- /.row -->
@@ -180,3 +195,4 @@
 </body>
 
 </html>
+    

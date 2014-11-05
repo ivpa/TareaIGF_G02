@@ -1,39 +1,38 @@
+<%@page import="sv.edu.ues.igf115.clave02.negocio.CtrlPuesto"%>
+
+
+<%@page import="sv.edu.ues.igf115.clave02.dominio.Puesto"%>
 <%@ page language="java" contentType="text/html; charset=ISO-8859-1"
     pageEncoding="ISO-8859-1"%>
-<%@ page import="sv.edu.ues.igf115.clave02.negocio.*" %>
-<%@ page import="java.util.*" %>
-<%@ page import="java.math.BigDecimal" %> 
-<%@ page import="java.text.SimpleDateFormat" %>
-
+    
 <%
+	String mensaje="<h3>Modificar puesto</h3>";
+	String id = request.getParameter("id");
 
-String id = request.getParameter("id") ;
-String nit = request.getParameter("nit") ;
-String dui = request.getParameter("dui") ;
-String nombres = request.getParameter("nombres") ;
-String apellido_paterno = request.getParameter("apellido_paterno") ;
-String apellido_materno = request.getParameter("apellido_materno") ;
-String fecha_nacimiento = request.getParameter("fecha_nacimiento") ;
-String fecha_ingreso = request.getParameter("fecha_ingreso") ;
-BigDecimal sueldo = new BigDecimal(request.getParameter("sueldo"));
-String e_mail = request.getParameter("e_mail") ;
-String telefono = request.getParameter("telefono") ;
-String activo = request.getParameter("activo") ;
-Short id_puesto =  new Short(request.getParameter("id_puesto"));
-String id_genero = request.getParameter("id_genero") ;
-String id_oficina = request.getParameter("id_oficina") ;
-String id_jefe = request.getParameter("id_jefe") ;
+	CtrlPuesto ctrl = new CtrlPuesto();
+	Puesto puesto =ctrl.daPuestoById(new Short(id)); 
+	String nombre="";
+	String perfil="";
+	String fecha="";
+	String sueldomin="";
+	String sueldomax="";
+	
+	if(puesto!=null){
+		
+		nombre = puesto.getNombrePuesto();
+		perfil = puesto.getPerfilPuesto();
+		fecha = puesto.getFechaIng().toString().substring(0,10);
+		sueldomin = puesto.getSueldoMin().toString();
+		sueldomax = puesto.getSueldoMax().toString();
+	}
+	else{
+		id ="";
+	}
+	
+	
+	
+%>    
 
-      
-      CtrlEmpleado ctrlEmpleado = new CtrlEmpleado() ;
-      boolean exito = ctrlEmpleado.modificarEmpleado(id, nit, dui, nombres, apellido_paterno, apellido_materno, fecha_nacimiento, fecha_ingreso, sueldo, e_mail, telefono, activo, id_puesto, id_genero, id_oficina, id_jefe);
-      
-      String mensaje ;
-      if (exito)
-      	 mensaje = "Empleado modificardo" ;
-      else
-    	  mensaje = "No se puede modificar el empleado porque no existe.";
- %> 
 <!DOCTYPE html>
 <html lang="en">
 
@@ -48,16 +47,16 @@ String id_jefe = request.getParameter("id_jefe") ;
     <title>Ingenieria de Software </title>
 
     <!-- Bootstrap Core CSS -->
-    <link href="css/bootstrap.min.css" rel="stylesheet">
+    <link href="../css/bootstrap.min.css" rel="stylesheet">
 
     <!-- Custom CSS -->
-    <link href="css/sb-admin.css" rel="stylesheet">
+    <link href="../css/sb-admin.css" rel="stylesheet">
 
     <!-- Morris Charts CSS -->
-    <link href="css/plugins/morris.css" rel="stylesheet">
+    <link href="../css/plugins/morris.css" rel="stylesheet">
 
     <!-- Custom Fonts -->
-    <link href="font-awesome-4.1.0/css/font-awesome.min.css" rel="stylesheet" type="text/css">
+    <link href="../font-awesome-4.1.0/css/font-awesome.min.css" rel="stylesheet" type="text/css">
 
     <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
     <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
@@ -153,7 +152,7 @@ String id_jefe = request.getParameter("id_jefe") ;
                         </h1>
                         <ol class="breadcrumb">
                             <li class="active">
-                                <i class="fa fa-dashboard"></i>Actualizar empleado
+                                <i class="fa fa-dashboard"></i>Modificar  puesto
                             </li>
                         </ol>
                     </div>
@@ -162,7 +161,24 @@ String id_jefe = request.getParameter("id_jefe") ;
 
                 <div class="row">
                     <div class="col-lg-12">
-                  <%=mensaje %>
+                       <%=mensaje %>
+                       <%
+                      
+                    	   
+                       %>
+                       <form action="output.jsp" method="post">
+                       Id puesto: <input type="text" value="<%=id %>"  name="id" disabled="disabled"><br>
+                       Nombre puesto: <input type="text"  value="<%=nombre%>" name="nombre"><br>
+                       
+                       Perfil puesto: <input type="text" value="<%=perfil%>" name="perfil"><br>
+                       
+                       Fecha: <input type="text" value="<%=fecha%>" name="fecha"><br>
+                       
+                       Sueldo min: <input type="text" value="<%=sueldomin%>" name="sueldomin"><br>
+                       
+                       Sueldo max: <input type="text" value="<%= sueldomax%>" name="sueldomax"><br>
+                       <input type="submit" value="Actualizar" class="btn btn-primary">
+                       </form>
                     </div>
                 </div>
                 <!-- /.row -->
@@ -184,15 +200,15 @@ String id_jefe = request.getParameter("id_jefe") ;
     <!-- /#wrapper -->
 
     <!-- jQuery Version 1.11.0 -->
-    <script src="js/jquery-1.11.0.js"></script>
+    <script src="../js/jquery-1.11.0.js"></script>
 
     <!-- Bootstrap Core JavaScript -->
-    <script src="js/bootstrap.min.js"></script>
+    <script src="../js/bootstrap.min.js"></script>
 
     <!-- Morris Charts JavaScript -->
-    <script src="js/plugins/morris/raphael.min.js"></script>
-    <script src="js/plugins/morris/morris.min.js"></script>
-    <script src="js/plugins/morris/morris-data.js"></script>
+    <script src="../js/plugins/morris/raphael.min.js"></script>
+    <script src="../js/plugins/morris/morris.min.js"></script>
+    <script src="../js/plugins/morris/morris-data.js"></script>
 
 </body>
 

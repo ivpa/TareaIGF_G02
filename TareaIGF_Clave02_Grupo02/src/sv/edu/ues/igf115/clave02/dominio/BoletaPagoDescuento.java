@@ -31,12 +31,12 @@ public class BoletaPagoDescuento implements Serializable{
 	@Basic(optional = false)
 	private BigDecimal montoDescuento;
 	
-	@ManyToOne
+	@ManyToOne(cascade = CascadeType.ALL)
 	@JoinColumn(name="id_tipodescuentos")//debe ser el nombre de la base
 	
 	private TipoDescuento tipoDescuento;
 	
-	@ManyToOne(fetch = FetchType.EAGER)
+	@ManyToOne(fetch = FetchType.EAGER,cascade =CascadeType.ALL)
 	@JoinColumn(name = "id_boletapago")//debe ser el nombre de la base
 	private BoletaPago boletaPago;
 	

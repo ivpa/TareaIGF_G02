@@ -47,12 +47,19 @@ public class BoletaPago implements Serializable{
 	private List<BoletaPagoDescuento> listBoleta;
 	
 	private BoletaPago(){}
-
+	
+	public BoletaPago(Short id,String periodo,BigDecimal sueldo,String empleado){
+		
+		this.id = id;
+		this.periodoPago = periodo;
+		this.sueldoNeto = sueldo;
+		this.idEmpleado = empleado;
+	}
 
 	/**
 	 * @return the id
 	 */
-	public Short getId() {
+	public  Short getId() {
 		return id;
 	}
 

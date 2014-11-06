@@ -1,34 +1,33 @@
-<%@page import="sv.edu.ues.igf115.clave02.negocio.CtrlPuesto"%>
-<%@page import="java.math.BigDecimal"%>
-<%@page import="sv.edu.ues.igf115.clave02.dominio.Puesto"%>
-<%@page import="java.util.Date"%>
-<%@page import="java.text.SimpleDateFormat"%>
-<%@page import="java.lang.Short" %>
+<%@page import="sv.edu.ues.igf115.clave02.negocio.CtrlBoletaPagoDescuento"%>
+<%@page import="java.util.List"%>
+
+<%@page import="sv.edu.ues.igf115.clave02.negocio.CtrlBoletaPagoDescuento"%>
+<%@page import="sv.edu.ues.igf115.clave02.dominio.*" %>
 <%@ page language="java" contentType="text/html; charset=ISO-8859-1"
     pageEncoding="ISO-8859-1"%>
-    
- <%
- 	String mensaje ="Se actualizo con exito";
- 	String fechaString = request.getParameter("fecha");
- 	SimpleDateFormat formato = new SimpleDateFormat("yyyy-MM-dd");
- 	Date fecha = null;
- 	fecha = formato.parse(fechaString);
- 	Short id = Short.parseShort(request.getParameter("idpuesto"));
- 	Puesto puesto = new Puesto(id,
- 								request.getParameter("nombre"),
- 								request.getParameter("perfil"),
- 								fecha,
- 								new BigDecimal(request.getParameter("sueldomin")),
- 								new BigDecimal(request.getParameter("sueldomin")));
- 	
- 	CtrlPuesto ctrl = new CtrlPuesto();
- 	if(ctrl.actualizaPuesto(puesto))
- 		mensaje ="Registro actualizado";
- 	else
- 	{
- 		mensaje ="No se pudo actualizar";
- 	}
- %>   
+<%
+	String mensaje="<table class=\"table\" ><tr><b>"+"<td>id BoletaPagoDescuento</td> "+"<td>Tipo descuento</td> "+"<td>Boleta </td>"+"<td>Monto</td>"+"</b></tr>";
+
+	CtrlBoletaPagoDescuento ctrl = new CtrlBoletaPagoDescuento(); 
+	List<BoletaPagoDescuento> listaBoletaPagoDescuento = ctrl.listaBoletaPagoDescuentos();
+	
+	int numeroBoletaPagoDescuento = listaBoletaPagoDescuento.size();
+	
+	if(listaBoletaPagoDescuento.isEmpty())
+		mensaje = "No hay BoletaPagoDescuentos";
+	else
+	{
+		BoletaPagoDescuento BoletaPagoDescuentoActual;
+		for(int i=0;i<numeroBoletaPagoDescuento;i++){
+			BoletaPagoDescuentoActual = (BoletaPagoDescuento)listaBoletaPagoDescuento.get(i);
+			mensaje+="<tr>"+"<td>"+BoletaPagoDescuentoActual.getId()+"</td>"+"<td>"+BoletaPagoDescuentoActual.getTipoDescuento().getId()+"</td> "
+					+"<td>"+BoletaPagoDescuentoActual.getBoletaPago().getId()+"</td>"+"<td>"+BoletaPagoDescuentoActual.getMontoDescuento()+"</td></tr>"
+					;
+					
+		}
+		mensaje+="</table>";
+	}
+%>
 <!DOCTYPE html>
 <html lang="en">
 
@@ -113,7 +112,7 @@
                                 <a href="#">Empleado</a>
                             </li>
                             <li>
-                                <a href="Puestos.html">Puesto</a>
+                                <a href="BoletaPagoDescuentos.html">BoletaPagoDescuento</a>
                             </li>
                             <li>
                                 <a href="#">Boleta Pago</a>
@@ -148,7 +147,7 @@
                         </h1>
                         <ol class="breadcrumb">
                             <li class="active">
-                                <i class="fa fa-dashboard"></i>Modificar  puesto
+                                <i class="fa fa-dashboard"></i>Mostrar  BoletaPagoDescuento
                             </li>
                         </ol>
                     </div>
@@ -156,11 +155,8 @@
                 <!-- /.row -->
 
                 <div class="row">
-                    <div class="col-lg-12" >
-                    <div class="alert alert-success" role="alert"">
-                    <%=mensaje %>
-                    </div>		
-                      
+                    <div class="col-lg-12">
+                       <%= mensaje %>
                     </div>
                 </div>
                 <!-- /.row -->
@@ -195,4 +191,3 @@
 </body>
 
 </html>
-    

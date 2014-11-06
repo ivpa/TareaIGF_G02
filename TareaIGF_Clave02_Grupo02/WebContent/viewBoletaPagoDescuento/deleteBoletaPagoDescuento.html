@@ -1,35 +1,3 @@
-<%@page import="sv.edu.ues.igf115.clave02.dao.PuestoDAO"%>
-<%@page import="sv.edu.ues.igf115.clave02.negocio.CtrlPuesto"%>
-<%@page import="java.util.Date"%>
-<%@page import="java.text.SimpleDateFormat"%>
-<%@page import="java.math.BigDecimal"%>
-<%@page import="sv.edu.ues.igf115.clave02.dominio.Puesto"%>
-<%@ page language="java" contentType="text/html; charset=ISO-8859-1"
-    pageEncoding="ISO-8859-1"%>
-<%
-	String mensaje="se actuliazo con exito";
-String fechaString = request.getParameter("fecha");
-
-SimpleDateFormat formatoDelTexto = new SimpleDateFormat("yyyy-MM-dd");
- Date fecha = null; //iniciamos fecha
- fecha= formatoDelTexto.parse(fechaString);
- 
-	Puesto puesto= new Puesto(new Short(request.getParameter("id")),
-								request.getParameter("nombre"),
-								request.getParameter("perfil"),
-								fecha,
-								new BigDecimal(request.getParameter("sueldomin")),
-								new BigDecimal(request.getParameter("sueldomax")));
-	
-	CtrlPuesto ctrl = new CtrlPuesto();		
-	
-	 if(ctrl.actualizaPuesto(puesto))
-		 mensaje="El registro fue actualizado con exito";
-	 else
-		 mensaje = "Ya existe ese registro";
-	
-	
-%>    
 <!DOCTYPE html>
 <html lang="en">
 
@@ -78,7 +46,7 @@ SimpleDateFormat formatoDelTexto = new SimpleDateFormat("yyyy-MM-dd");
                     <span class="icon-bar"></span>
                     <span class="icon-bar"></span>
                 </button>
-                <a class="navbar-brand" href="../index.html">Inicio</a>
+                <a class="navbar-brand" href="index.html">Inicio</a>
             </div>
             <!-- Top Menu Items -->
             <ul class="nav navbar-right top-nav">
@@ -114,7 +82,7 @@ SimpleDateFormat formatoDelTexto = new SimpleDateFormat("yyyy-MM-dd");
                                 <a href="#">Empleado</a>
                             </li>
                             <li>
-                                <a href="Puestos.html">Puesto</a>
+                                <a href="viewPuestos/Puestos.html">Puesto</a>
                             </li>
                             <li>
                                 <a href="#">Boleta Pago</a>
@@ -149,7 +117,7 @@ SimpleDateFormat formatoDelTexto = new SimpleDateFormat("yyyy-MM-dd");
                         </h1>
                         <ol class="breadcrumb">
                             <li class="active">
-                                <i class="fa fa-dashboard"></i>Modificar  puesto
+                                <i class="fa fa-dashboard"></i> Eliminar Boleta Pago Descuento
                             </li>
                         </ol>
                     </div>
@@ -157,11 +125,14 @@ SimpleDateFormat formatoDelTexto = new SimpleDateFormat("yyyy-MM-dd");
                 <!-- /.row -->
 
                 <div class="row">
-                    <div class="col-lg-12" >
-                    <div class="alert alert-success" role="alert"">
-                    <%=mensaje %>
-                    </div>		
-                      
+                    <div class="col-lg-12">
+                      <h3>Ingrese id del puesto a eliminar</h3>
+                      	<form action="deleteBoletaPagoDescuento.jsp" method="post">
+                      		Id Boleta pago descuento:<br>
+                      		<input type="text" name="id"><br><br>
+                      		<input type="submit" class="btn btn-primary" value="Aceptar"/>
+                     	 
+                     	</form>
                     </div>
                 </div>
                 <!-- /.row -->

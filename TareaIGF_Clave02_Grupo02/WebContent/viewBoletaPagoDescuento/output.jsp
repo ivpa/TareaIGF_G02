@@ -1,3 +1,7 @@
+<%@page import="sv.edu.ues.igf115.clave02.negocio.CtrlBoletaPagoDescuento"%>
+<%@page import="sv.edu.ues.igf115.clave02.dao.TipoDescuentoDAO"%>
+<%@page import="sv.edu.ues.igf115.clave02.dao.BoletaPagoDAO"%>
+<%@page import="sv.edu.ues.igf115.clave02.dominio.BoletaPagoDescuento"%>
 <%@page import="sv.edu.ues.igf115.clave02.negocio.CtrlPuesto"%>
 <%@page import="java.math.BigDecimal"%>
 <%@page import="sv.edu.ues.igf115.clave02.dominio.Puesto"%>
@@ -9,20 +13,16 @@
     
  <%
  	String mensaje ="Se actualizo con exito";
- 	String fechaString = request.getParameter("fecha");
- 	SimpleDateFormat formato = new SimpleDateFormat("yyyy-MM-dd");
- 	Date fecha = null;
- 	fecha = formato.parse(fechaString);
- 	Short id = Short.parseShort(request.getParameter("idpuesto"));
- 	Puesto puesto = new Puesto(id,
- 								request.getParameter("nombre"),
- 								request.getParameter("perfil"),
- 								fecha,
- 								new BigDecimal(request.getParameter("sueldomin")),
- 								new BigDecimal(request.getParameter("sueldomin")));
+ 
+ 	Integer id = Integer.parseInt(request.getParameter("idBoletaPagoDescuento"));
+ 	BoletaPagoDescuento bpd = new BoletaPagoDescuento(id,
+ 								new BigDecimal(request.getParameter("monto")),
+ 								new BoletaPagoDAO().daBoletaPagoById(Short.parseShort(request.getParameter("idBoleta"))),
+ 								
+ 								new TipoDescuentoDAO().daTipoDescuentoById(request.getParameter("idTipo"))); 
  	
- 	CtrlPuesto ctrl = new CtrlPuesto();
- 	if(ctrl.actualizaPuesto(puesto))
+ 	CtrlBoletaPagoDescuento ctrl = new CtrlBoletaPagoDescuento();
+ 	if(ctrl.actualizaBoletaPagoDescuento(bpd))
  		mensaje ="Registro actualizado";
  	else
  	{

@@ -1,32 +1,3 @@
-<%@page import="sv.edu.ues.igf115.clave02.dominio.BoletaPagoDescuento"%>
-<%@page import="sv.edu.ues.igf115.clave02.dao.TipoDescuentoDAO"%>
-<%@page import="sv.edu.ues.igf115.clave02.dominio.TipoDescuento"%>
-<%@page import="sv.edu.ues.igf115.clave02.negocio.CtrlBoletaPagoDescuento"%>
-<%@page import="sv.edu.ues.igf115.clave02.dao.BoletaPagoDAO"%>
-<%@page import="sv.edu.ues.igf115.clave02.dominio.BoletaPago"%>
-
-<%@page import="java.math.BigDecimal"%>
-<%@page import="java.text.SimpleDateFormat"%>
-<%@page import="java.util.Date"%>
-<%@ page language="java" contentType="text/html; charset=ISO-8859-1"
-    pageEncoding="ISO-8859-1"%>
-    
-    <%
-    	Integer id = Integer.parseInt(request.getParameter("id"));
-    	
-    	BoletaPago bp = new BoletaPagoDAO().daBoletaPagoById(new Short(request.getParameter("idbp")));
-    	TipoDescuento tpd = new TipoDescuentoDAO().daTipoDescuentoById((request.getParameter("idtd")));
-    	BigDecimal monto = new BigDecimal(request.getParameter("descuento"));
-    	
-    	BoletaPagoDescuento bpd= new BoletaPagoDescuento(id,monto,bp,tpd);
-    	String mensaje="";
-    	 CtrlBoletaPagoDescuento ctrl = new CtrlBoletaPagoDescuento();
-    	 
-    	 if(ctrl.crearBoletaPagoDescuento(bpd))
-    		 mensaje="El registro fue guardado con exito";
-    	 else
-    		 mensaje = "Ya existe ese registro";
-    %>
 <!DOCTYPE html>
 <html lang="en">
 
@@ -41,16 +12,16 @@
     <title>Ingenieria de Software </title>
 
     <!-- Bootstrap Core CSS -->
-    <link href="css/bootstrap.min.css" rel="stylesheet">
+    <link href="../css/bootstrap.min.css" rel="stylesheet">
 
     <!-- Custom CSS -->
-    <link href="css/sb-admin.css" rel="stylesheet">
+    <link href="../css/sb-admin.css" rel="stylesheet">
 
     <!-- Morris Charts CSS -->
-    <link href="css/plugins/morris.css" rel="stylesheet">
+    <link href="../css/plugins/morris.css" rel="stylesheet">
 
     <!-- Custom Fonts -->
-    <link href="font-awesome-4.1.0/css/font-awesome.min.css" rel="stylesheet" type="text/css">
+    <link href="../font-awesome-4.1.0/css/font-awesome.min.css" rel="stylesheet" type="text/css">
 
     <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
     <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
@@ -111,7 +82,7 @@
                                 <a href="#">Empleado</a>
                             </li>
                             <li>
-                                <a href="#">Puesto</a>
+                                <a href="viewPuestos/Puestos.html">Puesto</a>
                             </li>
                             <li>
                                 <a href="#">Boleta Pago</a>
@@ -146,7 +117,7 @@
                         </h1>
                         <ol class="breadcrumb">
                             <li class="active">
-                                <i class="fa fa-dashboard"></i> Crear Boleta Pago descuento
+                                <i class="fa fa-dashboard"></i> Panel Boleta pago descuento
                             </li>
                         </ol>
                     </div>
@@ -155,10 +126,10 @@
 
                 <div class="row">
                     <div class="col-lg-12">
-                    <div class="alert alert-success" role="alert">
-						 <%=mensaje %>
-					</div>
-                       
+                       <a href="createBoletaPagoDescuento.html" class="btn btn-primary btn-lg" role="button">Insertar Boleta P.D.</a>
+                       <a href="updateBoletaPagoDescuento.html" class="btn btn-primary btn-lg" role="button">Modificar Boleta P.D.</a>
+                       <a href="deleteBoletaPagoDescuento.html" class="btn btn-primary btn-lg" role="button">Eliminar Boleta P.D.</a>
+                       <a href="showBoletaPagoDescuento.jsp" class="btn btn-primary btn-lg" role="button">Mostrar Boleta P.D.</a>
                     </div>
                 </div>
                 <!-- /.row -->
@@ -180,15 +151,15 @@
     <!-- /#wrapper -->
 
     <!-- jQuery Version 1.11.0 -->
-    <script src="js/jquery-1.11.0.js"></script>
+    <script src="../js/jquery-1.11.0.js"></script>
 
     <!-- Bootstrap Core JavaScript -->
-    <script src="js/bootstrap.min.js"></script>
+    <script src="../js/bootstrap.min.js"></script>
 
     <!-- Morris Charts JavaScript -->
-    <script src="js/plugins/morris/raphael.min.js"></script>
-    <script src="js/plugins/morris/morris.min.js"></script>
-    <script src="js/plugins/morris/morris-data.js"></script>
+    <script src="../js/plugins/morris/raphael.min.js"></script>
+    <script src="../js/plugins/morris/morris.min.js"></script>
+    <script src="../js/plugins/morris/morris-data.js"></script>
 
 </body>
 

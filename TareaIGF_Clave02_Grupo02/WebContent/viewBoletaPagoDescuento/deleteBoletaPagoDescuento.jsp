@@ -1,33 +1,22 @@
-<%@page import="sv.edu.ues.igf115.clave02.negocio.CtrlPuesto"%>
-<%@page import="java.math.BigDecimal"%>
-<%@page import="sv.edu.ues.igf115.clave02.dominio.Puesto"%>
-<%@page import="java.util.Date"%>
-<%@page import="java.text.SimpleDateFormat"%>
-<%@page import="java.lang.Short" %>
+<%@page import="sv.edu.ues.igf115.clave02.negocio.CtrlBoletaPagoDescuento"%>
+
+
 <%@ page language="java" contentType="text/html; charset=ISO-8859-1"
     pageEncoding="ISO-8859-1"%>
     
  <%
- 	String mensaje ="Se actualizo con exito";
- 	String fechaString = request.getParameter("fecha");
- 	SimpleDateFormat formato = new SimpleDateFormat("yyyy-MM-dd");
- 	Date fecha = null;
- 	fecha = formato.parse(fechaString);
- 	Short id = Short.parseShort(request.getParameter("idpuesto"));
- 	Puesto puesto = new Puesto(id,
- 								request.getParameter("nombre"),
- 								request.getParameter("perfil"),
- 								fecha,
- 								new BigDecimal(request.getParameter("sueldomin")),
- 								new BigDecimal(request.getParameter("sueldomin")));
+ 	String mensaje="";
+ 
+ 	Integer id = Integer.parseInt(request.getParameter("id"));
+ 	CtrlBoletaPagoDescuento ctrl = new CtrlBoletaPagoDescuento();
  	
- 	CtrlPuesto ctrl = new CtrlPuesto();
- 	if(ctrl.actualizaPuesto(puesto))
- 		mensaje ="Registro actualizado";
+ 	if(ctrl.eliminarBoletaPagoDescuento(id))
+ 		mensaje="Boleta pago descuento fue eliminado con exito";
  	else
- 	{
- 		mensaje ="No se pudo actualizar";
- 	}
+ 		mensaje = "El registro no existe";
+ 
+ 	
+ 	
  %>   
 <!DOCTYPE html>
 <html lang="en">
@@ -148,7 +137,7 @@
                         </h1>
                         <ol class="breadcrumb">
                             <li class="active">
-                                <i class="fa fa-dashboard"></i>Modificar  puesto
+                                <i class="fa fa-dashboard"></i>Eliminar Boleta Pago Descuento
                             </li>
                         </ol>
                     </div>
@@ -195,4 +184,3 @@
 </body>
 
 </html>
-    

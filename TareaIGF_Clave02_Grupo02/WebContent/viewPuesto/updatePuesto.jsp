@@ -162,12 +162,9 @@
                 <div class="row">
                     <div class="col-lg-12">
                        <%=mensaje %>
-                       <%
                       
-                    	   
-                       %>
                        <form action="output.jsp" method="post">
-                       Id puesto: <input type="text" value="<%=id %>"  name="id" disabled="disabled"><br>
+                       Id puesto: <input type="text" value="<%=id %>"  name="idpuesto"><br>
                        Nombre puesto: <input type="text"  value="<%=nombre%>" name="nombre"><br>
                        
                        Perfil puesto: <input type="text" value="<%=perfil%>" name="perfil"><br>

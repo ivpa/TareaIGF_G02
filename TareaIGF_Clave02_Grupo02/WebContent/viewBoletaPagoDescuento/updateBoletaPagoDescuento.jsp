@@ -1,3 +1,36 @@
+<%@page import="sv.edu.ues.igf115.clave02.negocio.CtrlBoletaPagoDescuento"%>
+
+
+<%@page import="sv.edu.ues.igf115.clave02.dominio.BoletaPagoDescuento"%>
+<%@ page language="java" contentType="text/html; charset=ISO-8859-1"
+    pageEncoding="ISO-8859-1"%>
+    
+<%
+	String mensaje="<h3>Modificar BoletaPagoDescuento</h3>";
+	String id = request.getParameter("id");
+
+	CtrlBoletaPagoDescuento ctrl = new CtrlBoletaPagoDescuento();
+	BoletaPagoDescuento BoletaPagoDescuento =ctrl.daBoletaPagoDescuentoById(Integer.parseInt(id)); 
+	String idBoleta="";
+	String idTipo="";
+	String monto="";
+	
+	
+	if(BoletaPagoDescuento!=null){
+		
+		idBoleta = BoletaPagoDescuento.getBoletaPago().getId().toString();
+		idTipo = BoletaPagoDescuento.getTipoDescuento().getId().toString();
+		monto = BoletaPagoDescuento.getMontoDescuento().toString();
+		
+	}
+	else{
+		id ="";
+	}
+	
+	
+	
+%>    
+
 <!DOCTYPE html>
 <html lang="en">
 
@@ -12,16 +45,16 @@
     <title>Ingenieria de Software </title>
 
     <!-- Bootstrap Core CSS -->
-    <link href="css/bootstrap.min.css" rel="stylesheet">
+    <link href="../css/bootstrap.min.css" rel="stylesheet">
 
     <!-- Custom CSS -->
-    <link href="css/sb-admin.css" rel="stylesheet">
+    <link href="../css/sb-admin.css" rel="stylesheet">
 
     <!-- Morris Charts CSS -->
-    <link href="css/plugins/morris.css" rel="stylesheet">
+    <link href="../css/plugins/morris.css" rel="stylesheet">
 
     <!-- Custom Fonts -->
-    <link href="font-awesome-4.1.0/css/font-awesome.min.css" rel="stylesheet" type="text/css">
+    <link href="../font-awesome-4.1.0/css/font-awesome.min.css" rel="stylesheet" type="text/css">
 
     <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
     <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
@@ -46,7 +79,7 @@
                     <span class="icon-bar"></span>
                     <span class="icon-bar"></span>
                 </button>
-                <a class="navbar-brand" href="index.html">Inicio</a>
+                <a class="navbar-brand" href="../index.html">Inicio</a>
             </div>
             <!-- Top Menu Items -->
             <ul class="nav navbar-right top-nav">
@@ -82,7 +115,7 @@
                                 <a href="#">Empleado</a>
                             </li>
                             <li>
-                                <a href="#">Puesto</a>
+                                <a href="BoletaPagoDescuentos.html">BoletaPagoDescuento</a>
                             </li>
                             <li>
                                 <a href="#">Boleta Pago</a>
@@ -117,7 +150,7 @@
                         </h1>
                         <ol class="breadcrumb">
                             <li class="active">
-                                <i class="fa fa-dashboard"></i> Crear Boleta Pago Descuento
+                                <i class="fa fa-dashboard"></i>Modificar  BoletaPagoDescuento
                             </li>
                         </ol>
                     </div>
@@ -126,13 +159,19 @@
 
                 <div class="row">
                     <div class="col-lg-12">
-                        <form action="createBoletaPagoDescuento.jsp" method="post">
-                        	Id boleta pago D: <input type="text" name="id"><br>
-                        	Id boleta pago: <input type="text" name="idbp"><br>
-                        	Id tipo descuento: <input type="text" name="idtd"><br>
-                        	Monto descuento: <input type="text" name="descuento"/><br>
-                        	<input type="submit" value="Crear" class="btn btn-primary">
-                        </form>
+                       <%=mensaje %>
+                      
+                       <form action="output.jsp" method="post">
+                       Id BoletaPagoDescuento: <input type="text" value="<%=id %>"  name="idBoletaPagoDescuento"><br>
+                       Monto: <input type="text"  value="<%=monto%>" name="monto"><br>
+                       
+                       Id Boleta Pago: <input type="text" value="<%=idBoleta%>" name="idBoleta"><br>
+                       
+                       Id Tipo Descuento: <input type="text" value="<%=idTipo%>" name="idTipo"><br>
+                       
+                       
+                       <input type="submit" value="Actualizar" class="btn btn-primary">
+                       </form>
                     </div>
                 </div>
                 <!-- /.row -->
@@ -154,15 +193,15 @@
     <!-- /#wrapper -->
 
     <!-- jQuery Version 1.11.0 -->
-    <script src="js/jquery-1.11.0.js"></script>
+    <script src="../js/jquery-1.11.0.js"></script>
 
     <!-- Bootstrap Core JavaScript -->
-    <script src="js/bootstrap.min.js"></script>
+    <script src="../js/bootstrap.min.js"></script>
 
     <!-- Morris Charts JavaScript -->
-    <script src="js/plugins/morris/raphael.min.js"></script>
-    <script src="js/plugins/morris/morris.min.js"></script>
-    <script src="js/plugins/morris/morris-data.js"></script>
+    <script src="../js/plugins/morris/raphael.min.js"></script>
+    <script src="../js/plugins/morris/morris.min.js"></script>
+    <script src="../js/plugins/morris/morris-data.js"></script>
 
 </body>
 

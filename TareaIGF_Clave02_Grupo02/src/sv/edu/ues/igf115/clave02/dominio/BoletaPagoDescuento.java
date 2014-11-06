@@ -61,13 +61,13 @@ public class BoletaPagoDescuento implements Serializable{
 	public void setMontoDescuento(BigDecimal montoDescuento) {
 		this.montoDescuento = montoDescuento;
 	}
-	public TipoDescuento getTipoDescuentoList() {
+	public TipoDescuento getTipoDescuento() {
 		return tipoDescuento;
 	}
 	public void setTipoDescuento( TipoDescuento tipoDescuento) {
 		this.tipoDescuento = tipoDescuento;
 	}
-	public BoletaPago getBoletaPagoList() {
+	public BoletaPago getBoletaPago() {
 		return boletaPago;
 	}
 	public void setBoletaPagoList(BoletaPago boletaPago) {

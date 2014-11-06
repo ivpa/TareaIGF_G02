@@ -11,6 +11,7 @@ import org.hibernate.criterion.Restrictions;
 
 import sv.edu.ues.igf115.clave02.datos.HibernateUtil;
 import sv.edu.ues.igf115.clave02.dominio.BoletaPagoDescuento;
+import sv.edu.ues.igf115.clave02.dominio.Puesto;
 
 public class BoletaPagoDescuentoDAO {
 
@@ -80,5 +81,20 @@ public List<BoletaPagoDescuento> daBoletaPagoDescuentos(){
 	List<BoletaPagoDescuento> boletaPagoDescuentos = criteria.list();
 	sesion.close();
 	return boletaPagoDescuentos;
+}
+
+public void actualiza(BoletaPagoDescuento bpd){
+	try {
+		iniciaOperacion();
+		sesion.update(bpd);
+		tx.commit();
+		sesion.flush();
+	} catch (HibernateException he) {
+		// TODO: handle exception
+		manejaExcepcion(he);
+		throw he;
+	}finally{
+		sesion.close();
+	}
 }
 }

@@ -35,7 +35,7 @@ public class PuestoDAO {
 	public void guardaActualiza(Puesto puesto){
 		try {
 			iniciaOperacion();
-			sesion.save(puesto);
+			sesion.saveOrUpdate(puesto);
 			tx.commit();
 			sesion.flush();
 		} catch (HibernateException he) {

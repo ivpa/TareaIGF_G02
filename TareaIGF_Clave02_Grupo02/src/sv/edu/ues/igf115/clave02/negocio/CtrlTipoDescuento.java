@@ -3,6 +3,7 @@ package sv.edu.ues.igf115.clave02.negocio;
 
 import sv.edu.ues.igf115.clave02.dao.*;
 
+import sv.edu.ues.igf115.clave02.dominio.Empleado;
 import sv.edu.ues.igf115.clave02.dominio.TipoDescuento;
 
 
@@ -21,5 +22,28 @@ public class CtrlTipoDescuento {
 		
 
 }
+	public boolean eliminarTipoDescuento(String id)
+	{
+		
+       if (daoTipoDescuento.daTipoDescuentoById(id) != null) {
+    	   TipoDescuento tipodescuento = daoTipoDescuento.daTipoDescuentoById(id);
+		   daoTipoDescuento.eliminar(tipodescuento);
+			return true; //borrar
+		} else
+			return false; // no existe
+		
+	}
+	public TipoDescuento consultarTipoDescuento(String id){
+		TipoDescuento aux = null;
+		
+		if(daoTipoDescuento.daTipoDescuentoById(id) != null){
+			aux = daTipoDescuentoById(id);
+		}
+		
+		return aux;
+	}
+	public TipoDescuento daTipoDescuentoById(String id){
+		return daoTipoDescuento.daTipoDescuentoById(id);
+	}
 	}
 	

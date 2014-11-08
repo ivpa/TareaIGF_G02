@@ -2,7 +2,7 @@
 <%@page import="sv.edu.ues.igf115.clave02.negocio.CtrlDepartamento"%>
 <%@ page import="java.lang.Short" %>
 <%@ page language="java" contentType="text/html; charset=ISO-8859-1"
-    pageEncoding="ISO-8859-1"%>
+    pageEncoding="ISO-8859-1"%> 
 <%
 String nombre= request.getParameter("nombre");
 String zona = request.getParameter("zona");

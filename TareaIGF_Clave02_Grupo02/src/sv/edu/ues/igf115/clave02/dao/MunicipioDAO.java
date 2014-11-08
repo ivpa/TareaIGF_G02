@@ -1,4 +1,4 @@
-package sv.edu.ues.igf115.clave02.dao;
+package sv.edu.ues.igf115.clave02.dao; 
 
 
 import java.util.List;

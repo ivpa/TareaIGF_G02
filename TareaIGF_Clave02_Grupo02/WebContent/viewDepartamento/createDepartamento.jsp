@@ -1,21 +1,26 @@
 <%@page import="sv.edu.ues.igf115.clave02.dominio.Departamento"%>
 <%@page import="sv.edu.ues.igf115.clave02.negocio.CtrlDepartamento"%>
-<%@ page import="java.lang.Short" %>
+<%@page import="java.math.BigDecimal"%>
+<%@page import="java.text.SimpleDateFormat"%>
+<%@page import="java.util.Date"%>
 <%@ page language="java" contentType="text/html; charset=ISO-8859-1"
-    pageEncoding="ISO-8859-1"%> 
-<%
-String nombre= request.getParameter("nombre");
-String zona = request.getParameter("zona");
-CtrlDepartamento ctrld = new CtrlDepartamento();
-String mensaje="";
-
-if(ctrld.crearDepartamento(nombre, zona)){
-	mensaje="El Departamento ha sido registrado exitosamente";
-}    	
-else{
-	mensaje=" no se puede registrar";
-} 
-%>    
+    pageEncoding="ISO-8859-1"%>
+    
+    <%
+    	Short id = Short.parseShort(request.getParameter("id"));
+    	String nombre = request.getParameter("nombre");
+    	String zona = request.getParameter("zona");
+    	
+    	
+    	 String mensaje="";
+    	 Departamento Departamento = null;
+    	 CtrlDepartamento ctrl = new CtrlDepartamento();
+    	 
+    	 if(ctrl.crearDepartamento(Departamento))
+    		 mensaje="El registro fue guardado con exito";
+    	 else
+    		 mensaje = "Ya existe ese registro";
+    %>
 <!DOCTYPE html>
 <html lang="en">
 
@@ -136,7 +141,7 @@ else{
                         <ol class="breadcrumb">
                             <li class="active">
                                 <i class="fa fa-dashboard"></i> Crear Departamento
-                                         </li>
+                            </li>
                         </ol>
                     </div>
                 </div>

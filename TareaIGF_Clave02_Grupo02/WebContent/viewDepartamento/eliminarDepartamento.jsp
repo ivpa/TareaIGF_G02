@@ -1,3 +1,21 @@
+<%@page import="sv.edu.ues.igf115.clave02.negocio.CtrlDepartamento"%>
+<%@ page language="java" contentType="text/html; charset=ISO-8859-1"
+    pageEncoding="ISO-8859-1"%>
+    
+ <%
+ 	String mensaje="";
+ 
+ 	Short id = Short.parseShort(request.getParameter("id"));
+ 	CtrlDepartamento ctrl = new CtrlDepartamento();
+ 	
+ 	if(ctrl.eliminarDepartamento(id))
+ 		mensaje="El Departamento fue eliminado con exito";
+ 	else
+ 		mensaje = "El Departamento no existe";
+ 
+ 	
+ 	
+ %>   
 <!DOCTYPE html>
 <html lang="en">
 
@@ -46,7 +64,7 @@
                     <span class="icon-bar"></span>
                     <span class="icon-bar"></span>
                 </button>
-                <a class="navbar-brand" href="index.html">Inicio</a>
+                <a class="navbar-brand" href="../index.html">Inicio</a>
             </div>
             <!-- Top Menu Items -->
             <ul class="nav navbar-right top-nav">
@@ -82,7 +100,7 @@
                                 <a href="#">Empleado</a>
                             </li>
                             <li>
-                                <a href="#">Puesto</a>
+                                <a href="BoletaPagos.html">BoletaPago</a>
                             </li>
                             <li>
                                 <a href="#">Boleta Pago</a>
@@ -117,7 +135,7 @@
                         </h1>
                         <ol class="breadcrumb">
                             <li class="active">
-                                <i class="fa fa-dashboard"></i> Agregar Departamento
+                                <i class="fa fa-dashboard"></i>Eliminar  Departamento
                             </li>
                         </ol>
                     </div>
@@ -125,16 +143,11 @@
                 <!-- /.row -->
 
                 <div class="row">
-                    <div class="col-lg-12">
-                        <form  action="createDepartamento.jsp" method="post">
-                        	Id Departamento: <input type="text" name="id"><br>
-                        	
-                        	Nombre Departamento: <input type="text" name="nombre"><br>
-                        	Zona Geografica: <input type="text" name="zona"><br>
-                        	
-                        	
-                        	<input type="submit" value="Crear" class="btn btn-primary">
-                        </form>
+                    <div class="col-lg-12" >
+                    <div class="alert alert-success" role="alert"">
+                    <%=mensaje %>
+                    </div>		
+                      
                     </div>
                 </div>
                 <!-- /.row -->

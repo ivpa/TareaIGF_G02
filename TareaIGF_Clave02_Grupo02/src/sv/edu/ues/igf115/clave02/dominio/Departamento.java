@@ -1,96 +1,110 @@
-package sv.edu.ues.igf115.clave02.dominio; 
+package sv.edu.ues.igf115.clave02.dominio;
 
-import java.io.Serializable;  
+import java.io.Serializable;
 import java.util.List;
 
 import javax.persistence.Basic;
 import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
+import javax.persistence.FetchType;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
 
+
 @Entity
-@Table(name = "departamento",catalog="clave2",schema = "")
-
+@Table(name = "departamento",catalog = "clave2",schema = "")
 public class Departamento implements Serializable{
-private static final long serialVersionUID = 1L;
-private Short idDep;
-private String nombreDep;
-private String zona;
-private List<Municipio> municipioList;
 
-private Departamento(){
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 1L;
 	
+	@Id
+	@Column(name="id_depto")
+	@Basic(optional = false)
+	private Short id;
+	@Column(name = "nombre_depto")
+	@Basic(optional = false)
+	private String nombre;
+	@Column(name = "zona_geografica")
+	@Basic(optional = false)
+	private String zona;
+	
+	@OneToMany(fetch = FetchType.LAZY, mappedBy = "departamento")
+	private List<Municipio> listMunicipio;
+	
+	private Departamento(){}
+	
+	public Departamento(Short id,String nombre,String zona){
+		
+		this.id = id;
+		this.nombre = nombre;
+		this.zona = zona;
+
+	}
+
+	/**
+	 * @return the id
+	 */
+	public  Short getId() {
+		return id;
+	}
+
+
+	/**
+	 * @param id the id to set
+	 */
+	public void setId(Short id) {
+		this.id = id;
+	}
+
+
+	/**
+	 * @return the nombre
+	 */
+	public String getNombre() {
+		return nombre;
+	}
+
+
+	/**
+	 * @param nombre the nombre to set
+	 */
+	public void setNombre(String nombre) {
+		this.nombre = nombre;
+	}
+
+
+	
+	/**
+	 * @return the zona
+	 */
+	public String getZona() {
+		return zona;
+	}
+
+
+	/**
+	 * @param zona the zona to set
+	 */
+	public void setZona(String zona) {
+		this.zona = zona;
+	}
+
+
+	public List<Municipio> getListMunicipio() {
+		return listMunicipio;
+	}
+
+
+	public void setListMunicipio(List<Municipio> listMunicipio) {
+		this.listMunicipio = listMunicipio;
+	}
+
+
 }
-
-public Departamento(String nombreDep, String zona){
-	this.nombreDep = nombreDep;
-	this.zona = zona;
-}
-
-@Id
-@GeneratedValue(strategy = GenerationType.IDENTITY)
-@Basic(optional = false)
-@Column(name = "id_depto")
-public Short getIdDep(){
-	return idDep;
-}
-
-public void setIdDep(Short idDep){
-	this.idDep = idDep;
-}
-
-/**
- * @return the nombreDep
- */
-@Basic(optional = false)
-@Column(name = "nombre_depto")
-public String getNombreDep() {
-	return nombreDep;
-}
-
-/**
- * @param nombreDep the nombreDep to set
- */
-public void setNombreDep(String nombreDep) {
-	this.nombreDep = nombreDep;
-}
-
-/**
- * @return the zona
- */
-@Basic(optional = false)
-@Column(name = "zona_geografica")
-public String getZona() {
-	return zona;
-}
-
-/**
- * @param zona the zona to set
- */
-public void setZona(String zona) {
-	this.zona = zona;
-}
-
-/**
- * @return the municipioList
- */
-@OneToMany(cascade = CascadeType.ALL, mappedBy = "departamento")
-public List<Municipio> getMunicipioList() {
-	return municipioList;
-}
-
-/**
- * @param municipioList the municipioList to set
- */
-public void setMunicipioList(List<Municipio> municipioList) {
-	this.municipioList = municipioList;
-}
-
-
-}
-

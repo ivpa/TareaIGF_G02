@@ -1,4 +1,4 @@
-package sv.edu.ues.igf115.clave02.dao; 
+package sv.edu.ues.igf115.clave02.dao;
 
 import java.util.List;
 
@@ -12,12 +12,8 @@ import org.hibernate.criterion.Restrictions;
 import sv.edu.ues.igf115.clave02.datos.HibernateUtil;
 import sv.edu.ues.igf115.clave02.dominio.Departamento;
 
-
-
-
-
-
 public class DepartamentoDAO {
+
 private HibernateUtil hibernateUtil = new HibernateUtil();
 private SessionFactory sessionfactory = hibernateUtil.getSessionFactory();
 private Session sesion;
@@ -34,10 +30,11 @@ HibernateException{
 	throw new HibernateException("Ocurrio un error en la capa DAO",he);
 }
 
-public void guardaActualiza(Departamento departamento){
+
+public void guardaActualiza(Departamento Departamento){
 	try {
 		iniciaOperacion();
-		sesion.saveOrUpdate(departamento);
+		sesion.saveOrUpdate(Departamento);
 		tx.commit();
 		sesion.flush();
 	} catch (HibernateException he) {
@@ -49,11 +46,10 @@ public void guardaActualiza(Departamento departamento){
 	}
 }
 
-
-public void eliminar(Departamento departamento){
+public void eliminar(Departamento Departamento){
 	try {
 		iniciaOperacion();
-		sesion.delete(departamento);
+		sesion.delete(Departamento);
 		tx.commit();
 		sesion.flush();
 	} catch (HibernateException he) {
@@ -65,13 +61,13 @@ public void eliminar(Departamento departamento){
 	}
 }
 
-public Departamento daDepartamentoById(Short idDep){
+public Departamento daDepartamentoById(Short id){
 	sesion = sessionfactory.openSession();
 	Criteria criteria=sesion.createCriteria(Departamento.class)
-						.add(Restrictions.idEq(idDep));
-	Departamento id =(Departamento)criteria.uniqueResult();
+						.add(Restrictions.idEq(id));
+	Departamento idDep =(Departamento)criteria.uniqueResult();
 	sesion.close();
-	return id;
+	return idDep;
 }
 
 public List<Departamento> daDepartamentos(){
@@ -80,14 +76,5 @@ public List<Departamento> daDepartamentos(){
 	List<Departamento> departamentos = criteria.list();
 	sesion.close();
 	return departamentos;
-}
-
-public Departamento daDepartamentoByNombre(String nombre){
-	sesion = sessionfactory.openSession();
-	Criteria criteria = sesion.createCriteria(Departamento.class)
-			.add(Restrictions.eqProperty("nombreDep", nombre));
-	Departamento depto = (Departamento)criteria.uniqueResult();
-	sesion.close();
-	return depto;
 }
 }

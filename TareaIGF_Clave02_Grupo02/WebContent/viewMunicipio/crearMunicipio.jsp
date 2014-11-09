@@ -1,3 +1,27 @@
+<%@page import="sv.edu.ues.igf115.clave02.dominio.Municipio"%>
+<%@page import="sv.edu.ues.igf115.clave02.negocio.CtrlMunicipio"%>
+<%@page import="sv.edu.ues.igf115.clave02.dao.DepartamentoDAO"%>
+<%@page import="sv.edu.ues.igf115.clave02.dominio.Departamento"%>
+
+<%@page import="java.text.SimpleDateFormat"%>
+<%@page import="java.util.Date"%>
+<%@ page language="java" contentType="text/html; charset=ISO-8859-1"
+    pageEncoding="ISO-8859-1"%>
+    
+    <%
+    	Integer id = Integer.parseInt(request.getParameter("id"));
+       	Departamento Departamento = new DepartamentoDAO().daDepartamentoById(new Short(request.getParameter("departamento")));
+    	String nombre = request.getParameter("nombre");
+    	
+    	Municipio Municipio= new Municipio(id,nombre,Departamento);
+    	String mensaje="";
+    	 CtrlMunicipio ctrl = new CtrlMunicipio();
+    	 
+    	 if(ctrl.crearMunicipio(Municipio))
+    		 mensaje="El registro fue guardado con exito";
+    	 else
+    		 mensaje = "Ya existe ese registro";
+    %>
 <!DOCTYPE html>
 <html lang="en">
 
@@ -117,7 +141,7 @@
                         </h1>
                         <ol class="breadcrumb">
                             <li class="active">
-                                <i class="fa fa-dashboard"></i> Agregar Departamento
+                                <i class="fa fa-dashboard"></i> Crear Municipio
                             </li>
                         </ol>
                     </div>
@@ -126,15 +150,10 @@
 
                 <div class="row">
                     <div class="col-lg-12">
-                        <form  action="createDepartamento.jsp" method="post">
-                        	Id Departamento: <input type="text" name="id"><br>
-                        	
-                        	Nombre Departamento: <input type="text" name="nombre"><br>
-                        	Zona Geografica: <input type="text" name="zona"><br>
-                        	
-                        	
-                        	<input type="submit" value="Crear" class="btn btn-primary">
-                        </form>
+                    <div class="alert alert-success" role="alert">
+						 <%=mensaje %>
+					</div>
+                       
                     </div>
                 </div>
                 <!-- /.row -->
@@ -156,10 +175,10 @@
     <!-- /#wrapper -->
 
     <!-- jQuery Version 1.11.0 -->
-    <script src="../js/jquery-1.11.0.js"></script>
+    <script src="js/jquery-1.11.0.js"></script>
 
     <!-- Bootstrap Core JavaScript -->
-    <script src="../js/bootstrap.min.js"></script>
+    <script src="js/bootstrap.min.js"></script>
 
     <!-- Morris Charts JavaScript -->
     <script src="../js/plugins/morris/raphael.min.js"></script>

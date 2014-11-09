@@ -1,3 +1,33 @@
+<%@page import="sv.edu.ues.igf115.clave02.negocio.CtrlDepartamento"%>
+<%@page import="sv.edu.ues.igf115.clave02.dominio.Departamento"%>
+<%@ page language="java" contentType="text/html; charset=ISO-8859-1"
+    pageEncoding="ISO-8859-1"%>
+    
+<%
+	String mensaje="<h3>Modificar Departamento</h3>";
+	String id = request.getParameter("id");
+
+	CtrlDepartamento ctrl = new CtrlDepartamento();
+	Departamento Departamento =ctrl.daDepartamentoById(new Short(id)); 
+	String nombre="";
+	String zona="";
+	
+
+	
+	if(Departamento!=null){
+		
+		nombre = Departamento.getNombre();
+		zona= Departamento.getZona();
+		
+	}
+	else{
+		id ="";
+	}
+	
+	
+	
+%>    
+
 <!DOCTYPE html>
 <html lang="en">
 
@@ -46,7 +76,7 @@
                     <span class="icon-bar"></span>
                     <span class="icon-bar"></span>
                 </button>
-                <a class="navbar-brand" href="index.html">Inicio</a>
+                <a class="navbar-brand" href="../index.html">Inicio</a>
             </div>
             <!-- Top Menu Items -->
             <ul class="nav navbar-right top-nav">
@@ -82,7 +112,7 @@
                                 <a href="#">Empleado</a>
                             </li>
                             <li>
-                                <a href="#">Puesto</a>
+                                <a href="BoletaPagos.html">BoletaPago</a>
                             </li>
                             <li>
                                 <a href="#">Boleta Pago</a>
@@ -117,7 +147,7 @@
                         </h1>
                         <ol class="breadcrumb">
                             <li class="active">
-                                <i class="fa fa-dashboard"></i> Agregar Departamento
+                                <i class="fa fa-dashboard"></i>Modificar  Departamento
                             </li>
                         </ol>
                     </div>
@@ -126,15 +156,18 @@
 
                 <div class="row">
                     <div class="col-lg-12">
-                        <form  action="createDepartamento.jsp" method="post">
-                        	Id Departamento: <input type="text" name="id"><br>
-                        	
-                        	Nombre Departamento: <input type="text" name="nombre"><br>
-                        	Zona Geografica: <input type="text" name="zona"><br>
-                        	
-                        	
-                        	<input type="submit" value="Crear" class="btn btn-primary">
-                        </form>
+                       <%=mensaje %>
+                      
+                       <form action="output.jsp" method="post">
+                       Id Departamento: <input type="text" value="<%=id %>"  name="id"><br>
+                       Nombre Departamento: <input type="text"  value="<%=nombre%>" name="nombre"><br>
+                       
+                       Zona Geografica: <input type="text" value="<%=zona%>" name="zona"><br>
+                       
+                      
+                      
+                       <input type="submit" value="Actualizar" class="btn btn-primary">
+                       </form>
                     </div>
                 </div>
                 <!-- /.row -->

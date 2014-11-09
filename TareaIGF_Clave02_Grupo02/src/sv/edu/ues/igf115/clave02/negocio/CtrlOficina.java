@@ -29,7 +29,7 @@ public CtrlOficina()
 	public List<Oficina> listaOficina(){
 		return daoOficina.daOficina();
 	}
-	public Oficina daOficinaById_Oficina(int id_oficina){
+	public Oficina daOficinaById_Oficina(String id_oficina){
 		return daoOficina.daOficinaById(id_oficina);
 	}
 	public boolean actualizaOficina(Oficina oficina){
@@ -40,7 +40,7 @@ public CtrlOficina()
 		}else
 			return false;
 }
-public boolean eliminarOficina(int id_oficina){
+public boolean eliminarOficina(String id_oficina){
 
 if (daoOficina.daOficinaById(id_oficina)!=null) {
 	daoOficina.eliminar(daoOficina.daOficinaById(id_oficina));

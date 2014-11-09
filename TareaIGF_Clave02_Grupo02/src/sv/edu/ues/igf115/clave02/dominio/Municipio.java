@@ -32,7 +32,7 @@ public class Municipio implements Serializable{
 	private String nombre;
 	@ManyToOne(fetch = FetchType.EAGER,cascade =CascadeType.ALL)
 	@JoinColumn(name = "id_depto")
-	private Departamento Departamento;
+	private Departamento departamento;
 	
 	
 	private Municipio(){}
@@ -40,7 +40,7 @@ public class Municipio implements Serializable{
 	public Municipio(Integer id, String nombre,Departamento Departamento){
 		this.id = id;
 		this.nombre = nombre;
-		this.Departamento = Departamento;
+		this.departamento = Departamento;
 	}
 	
 	public int getId() {
@@ -57,10 +57,10 @@ public class Municipio implements Serializable{
 	}
 	
 	public Departamento getDepartamento() {
-		return Departamento;
+		return departamento;
 	}
 	public void setDepartamento(Departamento Departamento) {
-		this.Departamento = Departamento;
+		this.departamento = Departamento;
 	}
 
 }

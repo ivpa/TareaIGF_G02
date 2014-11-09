@@ -75,7 +75,7 @@ public class OficinaDAO {
 		}
 	}
 
-	public Oficina daOficinaById(int id_oficina){
+	public Oficina daOficinaById(String id_oficina){
 		sesion = sessionfactory.openSession();
 		Criteria criteria=sesion.createCriteria(Oficina.class)
 							.add(Restrictions.idEq(id_oficina));

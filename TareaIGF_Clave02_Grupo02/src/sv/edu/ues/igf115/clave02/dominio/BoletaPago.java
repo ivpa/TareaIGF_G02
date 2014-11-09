@@ -36,11 +36,11 @@ public class BoletaPago implements Serializable{
 	@Basic(optional = false)
 	private BigDecimal sueldoNeto;
 	
-//	@ManyToOne(fetch=FetchType.LAZY)
-//	@JoinColumn(name="id",referencedColumnName="id_empleado")
-	@Column(name = "id_empleado")
-	@Basic(optional = false)
-	private String idEmpleado;
+	@ManyToOne(fetch = FetchType.EAGER,cascade =CascadeType.ALL)
+	@JoinColumn(name="id_empleado")
+//	@Column(name = "id_empleado")
+//	@Basic(optional = false)
+	private Empleado idEmpleado;
 	
 	
 	@OneToMany(fetch = FetchType.LAZY, mappedBy = "boletaPago")
@@ -48,7 +48,7 @@ public class BoletaPago implements Serializable{
 	
 	private BoletaPago(){}
 	
-	public BoletaPago(Short id,String periodo,BigDecimal sueldo,String empleado){
+	public BoletaPago(Short id,String periodo,BigDecimal sueldo,Empleado empleado){
 		
 		this.id = id;
 		this.periodoPago = periodo;
@@ -107,7 +107,7 @@ public class BoletaPago implements Serializable{
 	/**
 	 * @return the idEmpleado
 	 */
-	public String getIdEmpleado() {
+	public Empleado getIdEmpleado() {
 		return idEmpleado;
 	}
 
@@ -115,7 +115,7 @@ public class BoletaPago implements Serializable{
 	/**
 	 * @param idEmpleado the idEmpleado to set
 	 */
-	public void setIdEmpleado(String idEmpleado) {
+	public void setIdEmpleado(Empleado idEmpleado) {
 		this.idEmpleado = idEmpleado;
 	}
 

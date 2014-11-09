@@ -20,7 +20,7 @@ public class Oficina implements Serializable {
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	@Basic(optional = false)
 	@Column(name = "id_oficina")
-	int id_oficina;
+	String id_oficina;
 	@Column(name="nomb_oficina")
 	@Basic(optional=false)
 	private String nomb_oficina;
@@ -42,7 +42,7 @@ public class Oficina implements Serializable {
 		this.id_municipio=id_municipio;
 		this.id_depto=id_depto;
 	}
-	public Oficina(int id ,String nombre,String domicilio,String id_municipio,String id_depto)
+	public Oficina(String id ,String nombre,String domicilio,String id_municipio,String id_depto)
 	{
 		this.id_oficina=id;
 		this.nomb_oficina=nombre;
@@ -50,11 +50,11 @@ public class Oficina implements Serializable {
 		this.id_municipio=id_municipio;
 		this.id_depto=id_depto;
 	}
-	public int getId_Oficina()
+	public String getId_Oficina()
 	{
 		return id_oficina;
 	}
-	public void setId_Oficina(int id_oficina)
+	public void setId_Oficina(String id_oficina)
 	{
 		this.id_oficina=id_oficina;
 	}

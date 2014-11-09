@@ -49,6 +49,10 @@
         <mapping class="sv.edu.ues.igf115.clave02.dominio.BoletaPago"/>
         <mapping class="sv.edu.ues.igf115.clave02.dominio.BoletaPagoDescuento"/>
         <mapping class="sv.edu.ues.igf115.clave02.dominio.TipoDescuento"/>
+        <mapping class="sv.edu.ues.igf115.clave02.dominio.Oficina"/>
+        <mapping class="sv.edu.ues.igf115.clave02.dominio.Departamento"/>
+        <mapping class="sv.edu.ues.igf115.clave02.dominio.Municipio"/>
+        <mapping class="sv.edu.ues.igf115.clave02.dominio.Genero"/>
 
     </session-factory>
 

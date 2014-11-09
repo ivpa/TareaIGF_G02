@@ -13,7 +13,7 @@
     	
     	
     	 String mensaje="";
-    	 Departamento Departamento = null;
+    	 Departamento Departamento = new Departamento(id,nombre,zona);
     	 CtrlDepartamento ctrl = new CtrlDepartamento();
     	 
     	 if(ctrl.crearDepartamento(Departamento))

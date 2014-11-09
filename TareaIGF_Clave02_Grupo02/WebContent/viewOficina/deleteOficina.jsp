@@ -4,10 +4,10 @@
     <%
  	String mensaje="";
  
- 	int id = Integer.parseInt(request.getParameter("id"));
+ 	String id = (request.getParameter("id"));
  	CtrlOficina ctrl = new CtrlOficina(); 
  	
- 	if(ctrl.eliminarOficina(id))
+ 	if(ctrl.eliminarOficina(id)) 
  		mensaje="El puesto fue eliminado con exito";
  	else
  		mensaje = "El puesto no existe";

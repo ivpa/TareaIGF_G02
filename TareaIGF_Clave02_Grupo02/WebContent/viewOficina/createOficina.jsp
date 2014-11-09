@@ -6,15 +6,15 @@
     
     <%
     
-
-    	String nombre = request.getParameter("nomb_oficina");
+		String id = request.getParameter("id_oficina");
+    	String nombre = request.getParameter("nomb_oficina"); 
     	String domicilio = request.getParameter("domicilio");
     	String id_municipio = request.getParameter("id_municipio");
     	String id_depto = request.getParameter("id_depto");
     
 
     	 String mensaje="";
-    	 Oficina oficina = new Oficina(nombre,domicilio,id_municipio,id_depto);
+    	 Oficina oficina = new Oficina(id,nombre,domicilio,id_municipio,id_depto);
     	CtrlOficina ctrl = new CtrlOficina(); 
  	//ApplicationContext ac=
     	//		WebApplicationContextUtils.getRequiredWebApplicationContext(getServletContext());

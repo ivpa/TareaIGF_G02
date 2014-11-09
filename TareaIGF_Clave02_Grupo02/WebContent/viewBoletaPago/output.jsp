@@ -1,3 +1,4 @@
+<%@page import="sv.edu.ues.igf115.clave02.dao.EmpleadoDAO"%>
 <%@page import="sv.edu.ues.igf115.clave02.negocio.CtrlBoletaPago"%>
 <%@page import="java.math.BigDecimal"%>
 <%@page import="sv.edu.ues.igf115.clave02.dominio.BoletaPago"%>
@@ -13,7 +14,7 @@
  	Short id = Short.parseShort(request.getParameter("idBoletaPago"));
  	BoletaPago BoletaPago = new BoletaPago(id,request.getParameter("periodo"),
  											new BigDecimal(request.getParameter("sueldo")),
- 											request.getParameter("idEmpleado"));  
+ 										new EmpleadoDAO().daEmpleadoById(request.getParameter("idEmpleado"))	);  
  	
  	
  	CtrlBoletaPago ctrl = new CtrlBoletaPago();

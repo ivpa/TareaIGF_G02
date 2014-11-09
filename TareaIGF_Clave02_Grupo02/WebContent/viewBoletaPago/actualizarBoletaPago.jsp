@@ -20,7 +20,7 @@
 		
 		periodo = BoletaPago.getPeriodoPago();
 		sueldo = BoletaPago.getSueldoNeto().toString();
-		idEmpleado= BoletaPago.getIdEmpleado();
+		idEmpleado= BoletaPago.getIdEmpleado().getId();
 		
 	}
 	else{

@@ -4,7 +4,7 @@
     <%@page import="sv.edu.ues.igf115.clave02.negocio.CtrlOficina"%>
     <%
  	String mensaje ="Se actualizo con exito";
-    int id=Integer.parseInt(request.getParameter("ide"));
+   String id=(request.getParameter("ide"));
     String nombre = request.getParameter("nombre");
 	String domicilio = request.getParameter("domicilio");
 	String id_municipio = request.getParameter("municipio");

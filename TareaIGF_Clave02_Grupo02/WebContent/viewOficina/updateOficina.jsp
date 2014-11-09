@@ -4,7 +4,7 @@
     <%@page import="sv.edu.ues.igf115.clave02.dominio.Oficina"%>
     <%
 	String mensaje="<h3>Modificar Oficina</h3>";
-	int ide = Integer.parseInt(request.getParameter("ide"));
+	String ide = (request.getParameter("ide"));
 
 	CtrlOficina ctrl = new CtrlOficina(); 
 	Oficina oficina =ctrl.daOficinaById_Oficina(ide); 
@@ -21,7 +21,7 @@
 		id_depto = oficina.getId_Depto();		
 	}
 	else{
-		ide =0;
+		ide ="";
 	}
 	
 	

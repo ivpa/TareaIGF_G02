@@ -1,0 +1,2 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<jdbcDataAdapter class="net.sf.jasperreports.data.jdbc.JdbcDataAdapterImpl"><name>DataAdapter</name><driver>com.mysql.jdbc.Driver</driver><username>root</username><password>1c1d8f7d-0f30-46ce-9ca6-2736ec5c3879</password><savePassword>true</savePassword><url>jdbc:mysql://localhost/clave2</url><database></database><serverAddress></serverAddress></jdbcDataAdapter>

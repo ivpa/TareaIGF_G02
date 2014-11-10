@@ -10,5 +10,7 @@
 	<classpathentry kind="con" path="org.eclipse.jst.j2ee.internal.module.container"/>
 	<classpathentry kind="con" path="org.eclipse.jdt.launching.JRE_CONTAINER/org.eclipse.jdt.internal.debug.ui.launcher.StandardVMType/jre7"/>
 	<classpathentry kind="lib" path="C:/Users/Ivpa/Downloads/spring-framework-3.2.4.RELEASE-dist/spring-framework-3.2.4.RELEASE/libs/spring-web-3.2.4.RELEASE.jar"/>
+	<classpathentry kind="lib" path="C:/Users/Ivpa/Downloads/Compressed/PDFReporte by Joseloco7/PDFReporte by Joseloco7/reportePDF/lib-reportes/substance.jar"/>
+	<classpathentry kind="lib" path="C:/Users/Ivpa/Downloads/Compressed/PDFReporte by Joseloco7/PDFReporte by Joseloco7/reportePDF/lib-reportes/swing-worker-1.1.jar"/>
 	<classpathentry kind="output" path="build/classes"/>
 </classpath>

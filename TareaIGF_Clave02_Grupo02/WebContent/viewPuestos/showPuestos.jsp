@@ -159,7 +159,7 @@
                 <!-- /.row -->
 
                 <div class="row">
-                    <div class="col-lg-12">
+               <a href="reporte.jsp" class="btn btn-primary " role="button">Reporte PDF</a>
                        <%= mensaje %>
                     </div>
                 </div>

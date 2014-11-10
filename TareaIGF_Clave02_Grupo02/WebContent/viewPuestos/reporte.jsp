@@ -9,61 +9,23 @@
 <%@ page contentType="application/vnd.ms-excel" language="java" %>
 
 <%
-Context initContext = new InitialContext();
-Context envContext = (Context)initContext.lookup("java:/comp/env");
-DataSource ds = (DataSource)envContext.lookup("jdbc/MySQLDataSource");
-Connection conn = ds.getConnection();
+Connection conexion;
+Class.forName("com.mysql.jdbc.Driver").newInstance();
+conexion = DriverManager.getConnection("jdbc:mysql://localhost:3306/clave2","root","root");
 
-String filejasper = "puestos.jasper";
-String JasperFilesSource = "";
+File reporteFile = new File(application.getRealPath("viewPuestos/reportes/puestos.jasper"));
 
-//Cargamos la definicion del reporte *.jasper
-File reportFile = new File(application.getRealPath("puestos.jasper"));
+Map parameter = new  HashMap();
+parameter.put("Nombre_parametro", "Valor_parametro");
 
-//cargamos parametros del reporte (si tiene).
-Map parametros = new HashMap();
+byte[] bytes = JasperRunManager.runReportToPdf(reporteFile.getPath(), parameter,conexion);
 
-//Generar XLS.
-//Preparacion del reporte (en esta etapa se inserta el valor del query en el reporte).
+response.setContentType("application/pdf");
+response.setContentLength(bytes.length);
+ServletOutputStream outputstream = response.getOutputStream();
+outputstream.write(bytes,0,bytes.length);
+outputstream.flush();
+outputstream.close();
 
-JasperPrint jasperPrint=JasperFillManager.fillReport(reportFile.getPath(), parametros, conn);
 
-//Nombre archivo resultado.
-String xlsFilesSource = "/reportes/puestos.xls";
-
-//Creacion del XLS
-JRXlsExporter exporter = new JRXlsExporter();
-exporter.setParameter(JRExporterParameter.JASPER_PRINT, jasperPrint);
-exporter.setParameter(JRExporterParameter.OUTPUT_FILE_NAME,application.getRealPath(xlsFilesSource));
-exporter.setParameter(JRXlsExporterParameter.IS_ONE_PAGE_PER_SHEET, Boolean.TRUE);
-exporter.exportReport();
-
-//En este punto ya esta Creado el XLS
-
-//Ahora lo Voy a Leer Y A forzar al Navegador Muestre Dialogo Para descargar el archivo
-//Funciona En IE y Firefox
-
-//Leer el archivo.
-File f = new File (application.getRealPath(xlsFilesSource));
-
-//Obtener el Nombre del archivo.
-String name = f.getName().substring(f.getName().lastIndexOf("/") + 1,f.getName().length());
-
-//Configurar cabecera y nombre de archivo a desplegar en DialogBox.
-response.setHeader("Content-Disposition", "attachment; filename=" + "" + name + "" );
-
-InputStream in = new FileInputStream(f);
-ServletOutputStream outs = response.getOutputStream();
-
-int bit = 256;
-int i = 0;
-
-while ((bit) >= 0) {
-bit = in.read();
-outs.write(bit);
-}
-
-outs.flush();
-outs.close();
-in.close();
 %>

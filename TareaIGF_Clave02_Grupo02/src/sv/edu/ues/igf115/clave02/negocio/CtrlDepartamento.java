@@ -24,7 +24,7 @@ public class CtrlDepartamento {
 	public List<Departamento> listaDepartamentos(){
 		return daoDepartamento.daDepartamentos();
 	}
-	public Departamento daDepartamentoById(Short id){
+	public Departamento daDepartamentoById(String id){
 		return daoDepartamento.daDepartamentoById(id);
 	}
 	
@@ -38,7 +38,7 @@ public boolean actualizaDepartamento(Departamento Departamento){
 		
 		
 	}
-public boolean eliminarDepartamento(Short id){
+public boolean eliminarDepartamento(String id){
 	
 	if (daoDepartamento.daDepartamentoById(id)!=null) {
 		

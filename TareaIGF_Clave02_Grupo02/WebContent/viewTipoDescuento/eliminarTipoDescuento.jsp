@@ -1,3 +1,25 @@
+<%@ page language="java" contentType="text/html; charset=ISO-8859-1"
+    pageEncoding="ISO-8859-1"%>
+<%@ page import="sv.edu.ues.igf115.clave02.negocio.*" %>
+<%@ page import="java.util.*" %>
+<%@ page import="java.math.BigDecimal" %> 
+<%@ page import="java.text.SimpleDateFormat" %>
+
+<%
+
+String id = request.getParameter("id") ;
+      
+
+	
+      CtrlTipoDescuento ctrltipodescuento = new CtrlTipoDescuento() ;
+      boolean exito = ctrltipodescuento.eliminarTipoDescuento(id);
+      
+      String mensaje ;
+      if (exito)
+      	 mensaje = "El Tipo Descuento  fue eliminado correctamente" ;
+      else
+    	  mensaje = "El id de Tipo Descuento no existe. intente de nuevo.";
+ %> 
 <!DOCTYPE html>
 <html lang="en">
 
@@ -78,26 +100,31 @@
                     <li>
                         <a href="javascript:;" data-toggle="collapse" data-target="#demo"><i class="fa fa-fw fa-arrows-v"></i> Mantenimiento PLanilla <i class="fa fa-fw fa-caret-down"></i></a>
                         <ul id="demo" class="collapse">
-                            <li>
-                                <a href="#">Empleado</a>
+                              <li>
+                                <a href="viewEmpleado/Empleados.html">Empleado</a>
                             </li>
                             <li>
-                                <a href="Puestos.html">Puesto</a>
+                                <a href="viewPuestos/Puestos.html">Puesto</a>
                             </li>
                             <li>
-                                <a href="#">Boleta Pago</a>
+                                <a href="viewBoletaPago">Boleta Pago</a>
                             </li>
                             <li>
-                                <a href="#">Oficina</a>
+                                <a href="viewOficina/oficinas.html">Oficina</a>
                             </li>
                            
                             <li>
-                                <a href="#">Boleta pago descuento</a>
+                                <a href="viewBoletaPagoDescuento">Boleta pago descuento</a>
                             </li>
                             <li>
-                                <a href="#">Tipos descuentos</a>
+                                <a href="viewTipoDescuento/TipoDescuento.html">Tipos descuentos</a>
                             </li>
-
+							 <li>
+                                <a href="viewDepartamento/Departamento.html">Departamentos</a>
+                            </li>
+                             <li>
+                                <a href="viewMunicipio/Municipio.html">Departamentos</a>
+                            </li>
                     </li>
                    
                 </ul>
@@ -117,7 +144,7 @@
                         </h1>
                         <ol class="breadcrumb">
                             <li class="active">
-                                <i class="fa fa-dashboard"></i>Eliminar empleado
+                                <i class="fa fa-dashboard"></i>Eliminar Tipo descuento
                             </li>
                         </ol>
                     </div>
@@ -126,10 +153,7 @@
 
                 <div class="row">
                     <div class="col-lg-12">
-                        <form action="eliminarTipoDescuento.jsp" method="get">
-						id <input type="text" name="id"><br>
-						<input type="submit" name="Enviar" value="Enviar"> 
-						</form>
+                       <%=mensaje %>
                     </div>
                 </div>
                 <!-- /.row -->

@@ -1,25 +1,33 @@
+<%@page import="sv.edu.ues.igf115.clave02.negocio.CtrlOficina"%>
+<%@page import="sv.edu.ues.igf115.clave02.dao.MunicipioDAO"%>
+<%@page import="sv.edu.ues.igf115.clave02.dominio.Municipio"%>
+<%@page import="sv.edu.ues.igf115.clave02.dominio.Oficina"%>
+<%@page import="sv.edu.ues.igf115.clave02.negocio.CtrlMunicipio"%>
+<%@page import="sv.edu.ues.igf115.clave02.dao.DepartamentoDAO"%>
+
+
+<%@page import="java.util.Date"%>
+<%@page import="java.text.SimpleDateFormat"%>
+<%@page import="java.lang.Short" %>
 <%@ page language="java" contentType="text/html; charset=ISO-8859-1"
     pageEncoding="ISO-8859-1"%>
-<%@ page import="sv.edu.ues.igf115.clave02.negocio.*" %>
-<%@ page import="java.util.*" %>
-<%@ page import="java.math.BigDecimal" %> 
-<%@ page import="java.text.SimpleDateFormat" %>
-
-<%
-
-String id = request.getParameter("id") ;
-      
-
-	
-      CtrlTipoDescuento ctrltipodescuento = new CtrlTipoDescuento() ;
-      boolean exito = ctrltipodescuento.eliminarTipoDescuento(id);
-      
-      String mensaje ;
-      if (exito)
-      	 mensaje = "El Tipo Descuento  fue eliminado correctamente" ;
-      else
-    	  mensaje = "El id de Tipo Descuento no existe. intente de nuevo.";
- %> 
+    
+ <%
+ 	String mensaje ="Se actualizo con exito";
+ 
+ 	String id = (request.getParameter("ide"));
+ 	Oficina oficina= new Oficina(id,request.getParameter("nombre"),request.getParameter("domicilio"),
+ 			new MunicipioDAO().daMunicipioById(request.getParameter("municipio")),
+ 			new DepartamentoDAO().daDepartamentoById(request.getParameter("departamento"))); 
+ 	
+ 	CtrlOficina ctrl = new CtrlOficina();
+ 	if(ctrl.actualizaOficina(oficina))
+ 		mensaje ="Registro actualizado";
+ 	else
+ 	{
+ 		mensaje ="No se pudo actualizar";
+ 	}
+ %>   
 <!DOCTYPE html>
 <html lang="en">
 
@@ -34,16 +42,16 @@ String id = request.getParameter("id") ;
     <title>Ingenieria de Software </title>
 
     <!-- Bootstrap Core CSS -->
-    <link href="css/bootstrap.min.css" rel="stylesheet">
+    <link href="../css/bootstrap.min.css" rel="stylesheet">
 
     <!-- Custom CSS -->
-    <link href="css/sb-admin.css" rel="stylesheet">
+    <link href="../css/sb-admin.css" rel="stylesheet">
 
     <!-- Morris Charts CSS -->
-    <link href="css/plugins/morris.css" rel="stylesheet">
+    <link href="../css/plugins/morris.css" rel="stylesheet">
 
     <!-- Custom Fonts -->
-    <link href="font-awesome-4.1.0/css/font-awesome.min.css" rel="stylesheet" type="text/css">
+    <link href="../font-awesome-4.1.0/css/font-awesome.min.css" rel="stylesheet" type="text/css">
 
     <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
     <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
@@ -100,26 +108,31 @@ String id = request.getParameter("id") ;
                     <li>
                         <a href="javascript:;" data-toggle="collapse" data-target="#demo"><i class="fa fa-fw fa-arrows-v"></i> Mantenimiento PLanilla <i class="fa fa-fw fa-caret-down"></i></a>
                         <ul id="demo" class="collapse">
-                            <li>
-                                <a href="#">Empleado</a>
+                             <li>
+                                <a href="viewEmpleado/Empleados.html">Empleado</a>
                             </li>
                             <li>
-                                <a href="Puestos.html">Puesto</a>
+                                <a href="viewPuestos/Puestos.html">Puesto</a>
                             </li>
                             <li>
-                                <a href="#">Boleta Pago</a>
+                                <a href="viewBoletaPago">Boleta Pago</a>
                             </li>
                             <li>
-                                <a href="#">Oficina</a>
+                                <a href="viewOficina/oficinas.html">Oficina</a>
                             </li>
                            
                             <li>
-                                <a href="#">Boleta pago descuento</a>
+                                <a href="viewBoletaPagoDescuento">Boleta pago descuento</a>
                             </li>
                             <li>
-                                <a href="#">Tipos descuentos</a>
+                                <a href="viewTipoDescuento/TipoDescuento.html">Tipos descuentos</a>
                             </li>
-
+							 <li>
+                                <a href="viewDepartamento/Departamento.html">Departamentos</a>
+                            </li>
+                             <li>
+                                <a href="viewMunicipio/Municipio.html">Departamentos</a>
+                            </li>
                     </li>
                    
                 </ul>
@@ -139,7 +152,7 @@ String id = request.getParameter("id") ;
                         </h1>
                         <ol class="breadcrumb">
                             <li class="active">
-                                <i class="fa fa-dashboard"></i>Eliminar empleado
+                                <i class="fa fa-dashboard"></i>Modificar  Oficina
                             </li>
                         </ol>
                     </div>
@@ -147,8 +160,11 @@ String id = request.getParameter("id") ;
                 <!-- /.row -->
 
                 <div class="row">
-                    <div class="col-lg-12">
-                       <%=mensaje %>
+                    <div class="col-lg-12" >
+                    <div class="alert alert-success" role="alert"">
+                    <%=mensaje %>
+                    </div>		
+                      
                     </div>
                 </div>
                 <!-- /.row -->
@@ -170,16 +186,17 @@ String id = request.getParameter("id") ;
     <!-- /#wrapper -->
 
     <!-- jQuery Version 1.11.0 -->
-    <script src="js/jquery-1.11.0.js"></script>
+    <script src="../js/jquery-1.11.0.js"></script>
 
     <!-- Bootstrap Core JavaScript -->
-    <script src="js/bootstrap.min.js"></script>
+    <script src="../js/bootstrap.min.js"></script>
 
     <!-- Morris Charts JavaScript -->
-    <script src="js/plugins/morris/raphael.min.js"></script>
-    <script src="js/plugins/morris/morris.min.js"></script>
-    <script src="js/plugins/morris/morris-data.js"></script>
+    <script src="../js/plugins/morris/raphael.min.js"></script>
+    <script src="../js/plugins/morris/morris.min.js"></script>
+    <script src="../js/plugins/morris/morris-data.js"></script>
 
 </body>
 
 </html>
+    

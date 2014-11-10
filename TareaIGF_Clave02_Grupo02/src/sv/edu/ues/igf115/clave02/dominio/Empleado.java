@@ -3,13 +3,17 @@ package sv.edu.ues.igf115.clave02.dominio;
 import java.io.Serializable;
 import java.math.BigDecimal;
 import java.util.Date;
+import java.util.List;
 
 
 import javax.persistence.Basic;
+import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.FetchType;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
 
@@ -71,22 +75,28 @@ public class Empleado implements Serializable{
 	@Basic(optional = false)
 	private String activo;
 	
-	@Column(name = "id_puesto")
-	@Basic(optional = false)
-	private Short id_puesto;
-	
-	@Column(name = "id_genero")
-	@Basic(optional = false)
-	private String id_genero;
-	
-	@Column(name = "id_oficina")
-	@Basic(optional = false)
-	private String id_oficina;
-	
-	@Column(name = "id_jefe")
-	@Basic(optional = true)
-	private String id_jefe;
+	@JoinColumn(name = "id_puesto", referencedColumnName = "id_puesto")
+	@ManyToOne(optional = false)
 
+	private Puesto id_puesto;
+	
+	@JoinColumn(name = "id_sexo", referencedColumnName = "id_sexo")
+	@ManyToOne(optional = false)
+	private Genero id_genero;
+	
+	@ManyToOne(optional=false)
+	@JoinColumn(name="id_oficina",referencedColumnName = "id_oficina")
+	private Oficina id_oficina;
+	
+	@JoinColumn(name = "id_jefe", referencedColumnName = "id_empleado")
+	@ManyToOne(optional = true)
+
+	private Empleado id_jefe;
+	
+	@OneToMany(fetch = FetchType.LAZY, mappedBy = "idEmpleado")
+	List<BoletaPago> listBole;
+	
+	
 	
 	private Empleado()
 	{
@@ -98,8 +108,8 @@ public class Empleado implements Serializable{
 	public Empleado(String id, String nit, String dui, String nombres,
 			String apellido_paterno, String apellido_materno,
 			String fecha_nacimiento, String fecha_ingreso, BigDecimal sueldo,
-			String e_mail, String telefono, String activo, Short id_puesto,
-			String id_genero, String id_oficina, String id_jefe) {
+			String e_mail, String telefono, String activo, Puesto id_puesto,
+			Genero id_genero, Oficina id_oficina, Empleado id_jefe) {
 		
 		this.id = id;
 		this.nit = nit;
@@ -234,40 +244,58 @@ public class Empleado implements Serializable{
 		this.activo = activo;
 	}
 
-	public Short getId_puesto() {
+	public Puesto getId_puesto() {
 		return id_puesto;
 	}
 
-	public void setId_puesto(Short id_puesto) {
+	public void setId_puesto(Puesto id_puesto) {
 		this.id_puesto = id_puesto;
 	}
 
-	public String getId_genero() {
+	public Genero getId_genero() {
 		return id_genero;
 	}
 
-	public void setId_genero(String id_genero) {
+	public void setId_genero(Genero id_genero) {
 		this.id_genero = id_genero;
 	}
 
-	public String getId_oficina() {
+	public Oficina getId_oficina() {
 		return id_oficina;
 	}
 
-	public void setId_oficina(String id_oficina) {
+	public void setId_oficina(Oficina id_oficina) {
 		this.id_oficina = id_oficina;
 	}
 	
-	public String getId_jefe() {
+	public Empleado getId_jefe() {
 		return id_jefe;
 	}
 
-	public void setId_jefe(String id_jefe) {
+	public void setId_jefe(Empleado id_jefe) {
 		this.id_jefe = id_jefe;
 	}
 
 	public static long getSerialversionuid() {
 		return serialVersionUID;
+	}
+
+
+
+	/**
+	 * @return the listBole
+	 */
+	public List<BoletaPago> getListBole() {
+		return listBole;
+	}
+
+
+
+	/**
+	 * @param listBole the listBole to set
+	 */
+	public void setListBole(List<BoletaPago> listBole) {
+		this.listBole = listBole;
 	}
 
 

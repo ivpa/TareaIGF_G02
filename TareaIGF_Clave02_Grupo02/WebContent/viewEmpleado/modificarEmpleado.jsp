@@ -1,3 +1,11 @@
+<%@page import="sv.edu.ues.igf115.clave02.dao.EmpleadoDAO"%>
+<%@page import="sv.edu.ues.igf115.clave02.dao.OficinaDAO"%>
+<%@page import="sv.edu.ues.igf115.clave02.dao.GeneroDAO"%>
+<%@page import="sv.edu.ues.igf115.clave02.dao.PuestoDAO"%>
+<%@page import="sv.edu.ues.igf115.clave02.dominio.Empleado"%>
+<%@page import="sv.edu.ues.igf115.clave02.dominio.Oficina"%>
+<%@page import="sv.edu.ues.igf115.clave02.dominio.Genero"%>
+<%@page import="sv.edu.ues.igf115.clave02.dominio.Puesto"%>
 <%@ page language="java" contentType="text/html; charset=ISO-8859-1"
     pageEncoding="ISO-8859-1"%>
 <%@ page import="sv.edu.ues.igf115.clave02.negocio.*" %>
@@ -19,10 +27,10 @@ BigDecimal sueldo = new BigDecimal(request.getParameter("sueldo"));
 String e_mail = request.getParameter("e_mail") ;
 String telefono = request.getParameter("telefono") ;
 String activo = request.getParameter("activo") ;
-Short id_puesto =  new Short(request.getParameter("id_puesto"));
-String id_genero = request.getParameter("id_genero") ;
-String id_oficina = request.getParameter("id_oficina") ;
-String id_jefe = request.getParameter("id_jefe") ;
+Puesto id_puesto =  new PuestoDAO().daPuestoById( new Short(request.getParameter("id_puesto")));
+Genero id_genero =new GeneroDAO().daGeneroById( request.getParameter("id_genero")) ;
+Oficina id_oficina =new OficinaDAO().daOficinaById( request.getParameter("id_oficina")) ;
+Empleado id_jefe = new EmpleadoDAO().daEmpleadoById(request.getParameter("id_jefe")) ;
 
       
       CtrlEmpleado ctrlEmpleado = new CtrlEmpleado() ;

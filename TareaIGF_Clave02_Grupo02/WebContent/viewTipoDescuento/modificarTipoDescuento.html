@@ -1,28 +1,3 @@
-<%@page import="sv.edu.ues.igf115.clave02.dominio.TipoDescuento"%>
-<%@page import="sv.edu.ues.igf115.clave02.negocio.CtrlTipoDescuento"%>
-<%@page import="java.math.BigDecimal"%>
-<%@page import="java.text.SimpleDateFormat"%>
-<%@page import="java.util.Date"%>
-<%@ page language="java" contentType="text/html; charset=ISO-8859-1"
-    pageEncoding="ISO-8859-1"%>
-    
-    <%
-    	String id = request.getParameter("id");
-    	String descripcion = request.getParameter("descripcion");
-    	BigDecimal porcentajedescuento = new BigDecimal(request.getParameter("porcentajedescuento"));
-    	String fechaString = request.getParameter("fecha");
-         Date fecha=null;
-    	SimpleDateFormat formatoDelTexto = new SimpleDateFormat("yyyy-MM-dd");
-    	
-    	fecha=formatoDelTexto.parse(fechaString);
-    	 String mensaje="";
-    	 TipoDescuento tipodescuento = new TipoDescuento(id,descripcion,porcentajedescuento,fecha);
-    	 CtrlTipoDescuento ctrl= new CtrlTipoDescuento();
-    	 if(ctrl.crearTipoDescuento(tipodescuento))
-    		 mensaje="El registro fue guardado con exito";
-    	 else
-    		 mensaje = "Ya existe ese registro";
-    %>
 <!DOCTYPE html>
 <html lang="en">
 
@@ -71,7 +46,7 @@
                     <span class="icon-bar"></span>
                     <span class="icon-bar"></span>
                 </button>
-                <a class="navbar-brand" href="index.html">Inicio</a>
+                <a class="navbar-brand" href="../index.html">Inicio</a>
             </div>
             <!-- Top Menu Items -->
             <ul class="nav navbar-right top-nav">
@@ -103,24 +78,30 @@
                     <li>
                         <a href="javascript:;" data-toggle="collapse" data-target="#demo"><i class="fa fa-fw fa-arrows-v"></i> Mantenimiento PLanilla <i class="fa fa-fw fa-caret-down"></i></a>
                         <ul id="demo" class="collapse">
-                            <li>
-                                <a href="#">Empleado</a>
+                             <li>
+                                <a href="viewEmpleado/Empleados.html">Empleado</a>
                             </li>
                             <li>
-                                <a href="#">Puesto</a>
+                                <a href="viewPuestos/Puestos.html">Puesto</a>
                             </li>
                             <li>
-                                <a href="#">Boleta Pago</a>
+                                <a href="viewBoletaPago">Boleta Pago</a>
                             </li>
                             <li>
-                                <a href="#">Oficina</a>
+                                <a href="viewOficina/oficinas.html">Oficina</a>
                             </li>
                            
                             <li>
-                                <a href="#">Boleta pago descuento</a>
+                                <a href="viewBoletaPagoDescuento">Boleta pago descuento</a>
                             </li>
                             <li>
-                                <a href="#">Tipos descuentos</a>
+                                <a href="viewTipoDescuento/TipoDescuento.html">Tipos descuentos</a>
+                            </li>
+							 <li>
+                                <a href="viewDepartamento/Departamento.html">Departamentos</a>
+                            </li>
+                             <li>
+                                <a href="viewMunicipio/Municipio.html">Departamentos</a>
                             </li>
 
                     </li>
@@ -142,7 +123,7 @@
                         </h1>
                         <ol class="breadcrumb">
                             <li class="active">
-                                <i class="fa fa-dashboard"></i> Crear puesto
+                                <i class="fa fa-dashboard"></i>Actualizar empleado
                             </li>
                         </ol>
                     </div>
@@ -151,10 +132,13 @@
 
                 <div class="row">
                     <div class="col-lg-12">
-                    <div class="alert alert-success" role="alert">
-						 <%=mensaje %>
-					</div>
-                       
+                       <form action="modificarTipoDescuento.jsp" method="get">
+						id <input type="text" name="id"><br>
+						descripcion <input type="text" name="descripcion"><br>
+						porcentaje <input type="text" name="porcentaje"><br>
+						fecha <input type="text" name="fecha"><br>
+						<input type="submit" name="Enviar" value="Enviar"> 
+						</form>
                     </div>
                 </div>
                 <!-- /.row -->

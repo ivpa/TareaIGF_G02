@@ -17,8 +17,8 @@
 	if(oficina!=null){
 		nombre = oficina.getNomb_Oficina();
 		domicilio = oficina.getDomicilio();
-		id_municipio = oficina.getId_Municipio();
-		id_depto = oficina.getId_Depto();		
+		id_municipio = oficina.getId_Municipio().getId();
+		id_depto = oficina.getId_Depto().getId();		
 	}
 	else{
 		ide ="";
@@ -103,24 +103,30 @@
                     <li>
                         <a href="javascript:;" data-toggle="collapse" data-target="#demo"><i class="fa fa-fw fa-arrows-v"></i> Mantenimiento Oficina <i class="fa fa-fw fa-caret-down"></i></a>
                         <ul id="demo" class="collapse">
-                            <li>
-                                <a href="#">Empleado</a>
+                              <li>
+                                <a href="viewEmpleado/Empleados.html">Empleado</a>
                             </li>
                             <li>
-                                <a href="Puestos.html">Puesto</a>
+                                <a href="viewPuestos/Puestos.html">Puesto</a>
                             </li>
                             <li>
-                                <a href="#">Boleta Pago</a>
+                                <a href="viewBoletaPago">Boleta Pago</a>
                             </li>
                             <li>
-                                <a href="#">Oficina</a>
+                                <a href="viewOficina/oficinas.html">Oficina</a>
                             </li>
                            
                             <li>
-                                <a href="#">Boleta pago descuento</a>
+                                <a href="viewBoletaPagoDescuento">Boleta pago descuento</a>
                             </li>
                             <li>
-                                <a href="#">Tipos descuentos</a>
+                                <a href="viewTipoDescuento/TipoDescuento.html">Tipos descuentos</a>
+                            </li>
+							 <li>
+                                <a href="viewDepartamento/Departamento.html">Departamentos</a>
+                            </li>
+                             <li>
+                                <a href="viewMunicipio/Municipio.html">Departamentos</a>
                             </li>
 
                     </li>
@@ -153,10 +159,10 @@
                     <div class="col-lg-12">
                        <%=mensaje %>
                       
-                       <form action="update_oficina.jsp" method="post">
+                       <form action="output.jsp" method="post">
                      
                      
-                      <input  type="text"  value="<%=ide%>" name="ide" style="Color:white" style="hidden:true" ><br>
+                      Id oficina: <input  type="text"  value="<%=ide%>" name="ide" disabled="disabled" ><br>
                        Nombre oficina: <input type="text"  value="<%=nombre%>" name="nombre"><br>
                        
                        Domicilio: <input type="text" value="<%=domicilio%>" name="domicilio"><br>

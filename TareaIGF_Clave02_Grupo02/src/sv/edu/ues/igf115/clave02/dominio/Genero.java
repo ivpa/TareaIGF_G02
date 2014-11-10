@@ -7,6 +7,7 @@ import javax.persistence.Basic;
 import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.Id;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
@@ -27,9 +28,11 @@ public class Genero implements Serializable{
 	@Column(name="d_sexo")
 	@Basic(optional = false)
 	private String sexo;
-	@OneToMany(cascade=CascadeType.ALL)
+	@OneToMany(fetch = FetchType.LAZY, mappedBy = "id_genero")
 	private List<Empleado> empleadoList;
+	
 	private Genero(){}
+	
 	public Genero(String id,String sexo){
 		this.id = id;
 		this.sexo = sexo;

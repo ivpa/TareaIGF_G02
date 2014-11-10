@@ -61,7 +61,7 @@ public void eliminar(Departamento Departamento){
 	}
 }
 
-public Departamento daDepartamentoById(Short id){
+public Departamento daDepartamentoById(String id){
 	sesion = sessionfactory.openSession();
 	Criteria criteria=sesion.createCriteria(Departamento.class)
 						.add(Restrictions.idEq(id));

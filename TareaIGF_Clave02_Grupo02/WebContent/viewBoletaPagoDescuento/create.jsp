@@ -1,7 +1,32 @@
-<!DOCTYPE html >
+<%@page import="sv.edu.ues.igf115.clave02.dominio.BoletaPago"%>
+<%@page import="java.util.List"%>
+<%@page import="sv.edu.ues.igf115.clave02.negocio.CtrlBoletaPago"%>
+<%@ page language="java" contentType="text/html; charset=ISO-8859-1"
+    pageEncoding="ISO-8859-1"%>
+
+<%
+	String selectBP="";
+	CtrlBoletaPago ctrl  = new CtrlBoletaPago();
+	List<BoletaPago> listBp = ctrl.listaBoletaPagos();
+	
+	if(listBp.isEmpty())
+		selectBP="<option value='000'>Vacio</option></otpion>"
+					;
+		else{
+			BoletaPago bp = null;
+			for(int i = 0; i <listBp.size();i++){
+				bp = (BoletaPago) listBp.get(i);
+				
+				selectBP+="\n<option value '"+bp.getId()+"' selected>";
+			}
+		}
+%>    
+<!DOCTYPE html>
 <html lang="en">
+
 <head>
- <meta charset="utf-8">
+
+    <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <meta name="description" content="">
@@ -29,8 +54,10 @@
     <![endif]-->
 
 </head>
+
 <body>
- <div id="wrapper">
+
+    <div id="wrapper">
 
         <!-- Navigation -->
         <nav class="navbar navbar-inverse navbar-fixed-top" role="navigation">
@@ -72,19 +99,19 @@
                   
                    
                     <li>
-                        <a href="javascript:;" data-toggle="collapse" data-target="#demo"><i class="fa fa-fw fa-arrows-v"></i> Mantenimiento Oficina <i class="fa fa-fw fa-caret-down"></i></a>
+                        <a href="javascript:;" data-toggle="collapse" data-target="#demo"><i class="fa fa-fw fa-arrows-v"></i> Mantenimiento PLanilla <i class="fa fa-fw fa-caret-down"></i></a>
                         <ul id="demo" class="collapse">
                             <li>
                                 <a href="#">Empleado</a>
                             </li>
                             <li>
-                                <a href="viewPuestos/Puestos.html">Puesto</a>
+                                <a href="#">Puesto</a>
                             </li>
                             <li>
                                 <a href="#">Boleta Pago</a>
                             </li>
                             <li>
-                                <a href="oficinas.html">Oficina</a>
+                                <a href="#">Oficina</a>
                             </li>
                            
                             <li>
@@ -113,7 +140,7 @@
                         </h1>
                         <ol class="breadcrumb">
                             <li class="active">
-                                <i class="fa fa-dashboard"></i> Eliminar Oficina
+                                <i class="fa fa-dashboard"></i> Crear Boleta Pago Descuento
                             </li>
                         </ol>
                     </div>
@@ -122,13 +149,13 @@
 
                 <div class="row">
                     <div class="col-lg-12">
-                      <h3>Ingrese id del Oficina a eliminar</h3>
-                      	<form action="deleteOficina.jsp" method="post">
-                      		Id Oficina:<br>
-                      		<input type="text" name="id"><br><br>
-                      		<input type="submit" class="btn btn-primary" value="Aceptar"/>
-                     	 
-                     	</form>
+                        <form action="createBoletaPagoDescuento.jsp" method="post">
+                        	Id boleta pago D: <input type="text" name="id"><br>
+                        	Id boleta pago: <select name="idbp" id="idbp" class="form-control"> <%=selectBP%> </select><br>
+                        	Id tipo descuento: <input type="text" name="idtd"><br>
+                        	Monto descuento: <input type="text" name="descuento"/><br>
+                        	<input type="submit" value="Crear" class="btn btn-primary">
+                        </form>
                     </div>
                 </div>
                 <!-- /.row -->
@@ -150,14 +177,16 @@
     <!-- /#wrapper -->
 
     <!-- jQuery Version 1.11.0 -->
-    <script src="../js/jquery-1.11.0.js"></script>
+    <script src="js/jquery-1.11.0.js"></script>
 
     <!-- Bootstrap Core JavaScript -->
-    <script src="../js/bootstrap.min.js"></script>
+    <script src="js/bootstrap.min.js"></script>
 
     <!-- Morris Charts JavaScript -->
     <script src="../js/plugins/morris/raphael.min.js"></script>
     <script src="../js/plugins/morris/morris.min.js"></script>
     <script src="../js/plugins/morris/morris-data.js"></script>
+
 </body>
+
 </html>

@@ -20,7 +20,7 @@
 		for(int i=0;i<numeroBoletaPago;i++){
 			BoletaPagoActual = (BoletaPago)listaBoletaPago.get(i);
 			mensaje+="<tr>"+"<td>"+BoletaPagoActual.getId()+"</td>"+"<td>"+BoletaPagoActual.getPeriodoPago()+"</td> "
-					+"<td>"+BoletaPagoActual.getSueldoNeto()+"</td>"+"<td>"+BoletaPagoActual.getIdEmpleado()+"</td>"
+					+"<td>"+BoletaPagoActual.getSueldoNeto()+"</td>"+"<td>"+BoletaPagoActual.getIdEmpleado().getId()+"</td>"
 					+"</td> </tr>";
 					
 		}
@@ -108,25 +108,30 @@
                         <a href="javascript:;" data-toggle="collapse" data-target="#demo"><i class="fa fa-fw fa-arrows-v"></i> Mantenimiento PLanilla <i class="fa fa-fw fa-caret-down"></i></a>
                         <ul id="demo" class="collapse">
                             <li>
-                                <a href="#">Empleado</a>
+                                <a href="viewEmpleado/Empleados.html">Empleado</a>
                             </li>
                             <li>
-                                <a href="BoletaPagos.html">BoletaPago</a>
+                                <a href="viewPuestos/Puestos.html">Puesto</a>
                             </li>
                             <li>
-                                <a href="#">Boleta Pago</a>
+                                <a href="viewBoletaPago">Boleta Pago</a>
                             </li>
                             <li>
-                                <a href="#">Oficina</a>
+                                <a href="viewOficina/oficinas.html">Oficina</a>
                             </li>
                            
                             <li>
-                                <a href="#">Boleta pago descuento</a>
+                                <a href="viewBoletaPagoDescuento">Boleta pago descuento</a>
                             </li>
                             <li>
-                                <a href="#">Tipos descuentos</a>
+                                <a href="viewTipoDescuento/TipoDescuento.html">Tipos descuentos</a>
                             </li>
-
+							 <li>
+                                <a href="viewDepartamento/Departamento.html">Departamentos</a>
+                            </li>
+                             <li>
+                                <a href="viewMunicipio/Municipio.html">Departamentos</a>
+                            </li>
                     </li>
                    
                 </ul>

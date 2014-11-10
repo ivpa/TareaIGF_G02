@@ -62,7 +62,7 @@ public void eliminar(Municipio Municipio){
 	}
 }
 
-public Municipio daMunicipioById(Integer id){
+public Municipio daMunicipioById(String id){
 	sesion = sessionfactory.openSession();
 	Criteria criteria=sesion.createCriteria(Municipio.class)
 						.add(Restrictions.idEq(id));

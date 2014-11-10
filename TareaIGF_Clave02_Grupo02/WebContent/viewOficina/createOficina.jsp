@@ -1,3 +1,7 @@
+<%@page import="sv.edu.ues.igf115.clave02.dao.DepartamentoDAO"%>
+<%@page import="sv.edu.ues.igf115.clave02.dao.MunicipioDAO"%>
+<%@page import="sv.edu.ues.igf115.clave02.dominio.Departamento"%>
+<%@page import="sv.edu.ues.igf115.clave02.dominio.Municipio"%>
 <%@page import="sv.edu.ues.igf115.clave02.dominio.Oficina"%>
 <%@page import="sv.edu.ues.igf115.clave02.negocio.CtrlOficina"%>
 
@@ -9,8 +13,8 @@
 		String id = request.getParameter("id_oficina");
     	String nombre = request.getParameter("nomb_oficina"); 
     	String domicilio = request.getParameter("domicilio");
-    	String id_municipio = request.getParameter("id_municipio");
-    	String id_depto = request.getParameter("id_depto");
+    	Municipio id_municipio =new MunicipioDAO().daMunicipioById( request.getParameter("id_municipio"));
+    	Departamento id_depto =new DepartamentoDAO().daDepartamentoById( request.getParameter("id_depto"));
     
 
     	 String mensaje="";
@@ -101,24 +105,30 @@
                     <li>
                         <a href="javascript:;" data-toggle="collapse" data-target="#demo"><i class="fa fa-fw fa-arrows-v"></i> Mantenimiento Oficina <i class="fa fa-fw fa-caret-down"></i></a>
                         <ul id="demo" class="collapse">
-                            <li>
-                                <a href="#">Empleado</a>
+                              <li>
+                                <a href="viewEmpleado/Empleados.html">Empleado</a>
                             </li>
                             <li>
-                                <a href="Puestos.html">Puesto</a>
+                                <a href="viewPuestos/Puestos.html">Puesto</a>
                             </li>
                             <li>
-                                <a href="#">Boleta Pago</a>
+                                <a href="viewBoletaPago">Boleta Pago</a>
                             </li>
                             <li>
-                                <a href="#">Oficina</a>
+                                <a href="viewOficina/oficinas.html">Oficina</a>
                             </li>
                            
                             <li>
-                                <a href="#">Boleta pago descuento</a>
+                                <a href="viewBoletaPagoDescuento">Boleta pago descuento</a>
                             </li>
                             <li>
-                                <a href="#">Tipos descuentos</a>
+                                <a href="viewTipoDescuento/TipoDescuento.html">Tipos descuentos</a>
+                            </li>
+							 <li>
+                                <a href="viewDepartamento/Departamento.html">Departamentos</a>
+                            </li>
+                             <li>
+                                <a href="viewMunicipio/Municipio.html">Departamentos</a>
                             </li>
 
                     </li>

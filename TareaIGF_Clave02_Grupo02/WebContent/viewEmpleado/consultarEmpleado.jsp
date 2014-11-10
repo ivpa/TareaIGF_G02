@@ -21,8 +21,8 @@ String id = request.getParameter("id") ;
     	  exito = true;
       
       String mensaje ;
-      if (exito)
-    	  
+      if (exito){
+    	
       mensaje = "Datos del empleado"+
       " <br> id empleado: "+empleado.getId()+
       " <br> nit: "+empleado.getNit()+
@@ -36,11 +36,11 @@ String id = request.getParameter("id") ;
       " <br> e_mail: "+empleado.getE_mail()+
       " <br> telefono: "+empleado.getTelefono()+
       " <br> activo: "+empleado.getActivo()+
-      " <br> id de puesto: "+empleado.getId_puesto()+
-      " <br> id de genero: "+empleado.getId_genero()+
-      " <br> id de oficina: "+empleado.getId_oficina()+
-      " <br> id de jefe: "+empleado.getId_jefe();
-      
+      " <br> id de puesto: "+empleado.getId_puesto().getId()+
+      " <br> id de genero: "+empleado.getId_genero().getId()+
+      " <br> id de oficina: "+empleado.getId_oficina().getId_Oficina()+
+      " <br> id de jefe: "+empleado.getId_jefe().getId().toString();
+      }
       else
     	  mensaje = "El id de empleado no existe. intente de nuevo.";
  %> 

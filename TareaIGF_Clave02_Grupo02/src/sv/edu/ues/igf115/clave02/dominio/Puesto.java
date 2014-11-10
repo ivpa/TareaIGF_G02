@@ -9,6 +9,7 @@ import javax.persistence.Basic;
 import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
@@ -41,9 +42,9 @@ public class Puesto implements Serializable{
 	@Column(name="sueldo_max")
 	@Basic(optional=false)
 	private BigDecimal sueldoMax;
-//	@OneToMany(cascade=CascadeType.ALL,mappedBy="puesto")
-//	private List<Empleado> empleadoList;
-//	
+	@OneToMany(cascade=CascadeType.ALL,mappedBy="id_puesto")
+	private List<Empleado> empleadoList;
+	
 	
 	//Constructor que usara Hibertante
 	private Puesto(){}

@@ -11,6 +11,9 @@ import javax.persistence.Id;
 
 import sv.edu.ues.igf115.clave02.dao.EmpleadoDAO;
 import sv.edu.ues.igf115.clave02.dominio.Empleado;
+import sv.edu.ues.igf115.clave02.dominio.Genero;
+import sv.edu.ues.igf115.clave02.dominio.Oficina;
+import sv.edu.ues.igf115.clave02.dominio.Puesto;
 
 public class CtrlEmpleado {
 	
@@ -19,10 +22,10 @@ private EmpleadoDAO daoEmpleado = new EmpleadoDAO();
 
 /*String id, String nit, String dui, String nombres, String apellido_paterno, String apellido_materno, Date fecha_nacimiento, Date fecha_ingreso, BigDecimal sueldo, String e_mail, String telefono, String activo, Short id_puesto, String id_genero, String id_oficina*/
 
-	public boolean crearEmpleado(String id, String nit, String dui, String nombres, String apellido_paterno, String apellido_materno, String fecha_nacimiento, String fecha_ingreso, BigDecimal sueldo, String e_mail, String telefono, String activo, Short id_puesto, String id_genero, String id_oficina, String id_jefe) {
+	public boolean crearEmpleado(String id, String nit, String dui, String nombres, String apellido_paterno, String apellido_materno, String fecha_nacimiento, String fecha_ingreso, BigDecimal sueldo, String e_mail, String telefono, String activo, Puesto id_puesto, Genero id_genero,Oficina id_oficina, Empleado id_jefe) {
 		if (daoEmpleado.daEmpleadoById(id) == null) {
 			
-			if(id_jefe=="")
+			if(id_jefe.getId()=="")
 			  id_jefe=null;
 			
 			Empleado empleado = new Empleado(id, nit, dui, nombres, apellido_paterno, apellido_materno, fecha_nacimiento, fecha_ingreso, sueldo, e_mail, telefono, activo, id_puesto, id_genero, id_oficina, id_jefe);
@@ -44,9 +47,9 @@ private EmpleadoDAO daoEmpleado = new EmpleadoDAO();
 		
 	}
 
-	public boolean modificarEmpleado(String id, String nit, String dui, String nombres, String apellido_paterno, String apellido_materno, String fecha_nacimiento, String fecha_ingreso, BigDecimal sueldo, String e_mail, String telefono, String activo, Short id_puesto, String id_genero, String id_oficina, String id_jefe){
+	public boolean modificarEmpleado(String id, String nit, String dui, String nombres, String apellido_paterno, String apellido_materno, String fecha_nacimiento, String fecha_ingreso, BigDecimal sueldo, String e_mail, String telefono, String activo, Puesto id_puesto, Genero id_genero,Oficina id_oficina, Empleado id_jefe){
 		
-		if(id_jefe=="")
+		if(id_jefe.getId()=="")
 			id_jefe=null;
 		
 		if (daoEmpleado.daEmpleadoById(id) != null) {

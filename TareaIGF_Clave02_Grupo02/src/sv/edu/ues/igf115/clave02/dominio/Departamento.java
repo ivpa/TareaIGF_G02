@@ -27,7 +27,7 @@ public class Departamento implements Serializable{
 	@Id
 	@Column(name="id_depto")
 	@Basic(optional = false)
-	private Short id;
+	private String id;
 	@Column(name = "nombre_depto")
 	@Basic(optional = false)
 	private String nombre;
@@ -40,7 +40,7 @@ public class Departamento implements Serializable{
 	
 	private Departamento(){}
 	
-	public Departamento(Short id,String nombre,String zona){
+	public Departamento(String id,String nombre,String zona){
 		
 		this.id = id;
 		this.nombre = nombre;
@@ -51,7 +51,7 @@ public class Departamento implements Serializable{
 	/**
 	 * @return the id
 	 */
-	public  Short getId() {
+	public  String getId() {
 		return id;
 	}
 
@@ -59,7 +59,7 @@ public class Departamento implements Serializable{
 	/**
 	 * @param id the id to set
 	 */
-	public void setId(Short id) {
+	public void setId(String id) {
 		this.id = id;
 	}
 

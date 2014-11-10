@@ -24,7 +24,7 @@ MunicipioDAO daoMunicipio = new MunicipioDAO();
 	public List<Municipio> listaMunicipios(){
 		return daoMunicipio.daMunicipios();
 	}
-	public Municipio daMunicipioById(Integer id){
+	public Municipio daMunicipioById(String id){
 		return daoMunicipio.daMunicipioById(id);
 	}
 	
@@ -38,7 +38,7 @@ public boolean actualizaMunicipio(Municipio Municipio){
 		
 		
 	}
-public boolean eliminarMunicipio(Integer id){
+public boolean eliminarMunicipio(String id){
 	
 	if (daoMunicipio.daMunicipioById(id)!=null) {
 		daoMunicipio.eliminar(daoMunicipio.daMunicipioById(id));

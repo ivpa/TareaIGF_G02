@@ -8,13 +8,13 @@
 <%
 
 String id = request.getParameter("id") ;
-String nit = request.getParameter("nit") ;
-String dui = request.getParameter("dui") ;
+String nit = request.getParameter("nit")  + request.getParameter("nit2")  + request.getParameter("nit3")  + request.getParameter("nit4") ;
+String dui = request.getParameter("dui")  + request.getParameter("dui2") ;
 String nombres = request.getParameter("nombres") ;
 String apellido_paterno = request.getParameter("apellido_paterno") ;
 String apellido_materno = request.getParameter("apellido_materno") ;
-String fecha_nacimiento = request.getParameter("fecha_nacimiento") ;
-String fecha_ingreso = request.getParameter("fecha_ingreso") ;
+String fecha_nacimiento = request.getParameter("fecha_nacimiento3")+ "-" + request.getParameter("fecha_nacimiento2") + "-" + request.getParameter("fecha_nacimiento") ;
+String fecha_ingreso = request.getParameter("fecha_ingreso3") + "-" + request.getParameter("fecha_ingreso2") + "-" + request.getParameter("fecha_ingreso") ;
 BigDecimal sueldo = new BigDecimal(request.getParameter("sueldo"));
 String e_mail = request.getParameter("e_mail") ;
 String telefono = request.getParameter("telefono") ;

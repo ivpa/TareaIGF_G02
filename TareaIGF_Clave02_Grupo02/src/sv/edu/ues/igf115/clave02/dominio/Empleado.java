@@ -4,11 +4,15 @@ import java.io.Serializable;
 import java.math.BigDecimal;
 import java.util.Date;
 
+
 import javax.persistence.Basic;
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.Id;
+import javax.persistence.OneToMany;
 import javax.persistence.Table;
+
 
 @Entity
 @Table(name = "empleado",catalog = "clave2",schema = "")
@@ -82,6 +86,7 @@ public class Empleado implements Serializable{
 	@Column(name = "id_jefe")
 	@Basic(optional = true)
 	private String id_jefe;
+
 	
 	private Empleado()
 	{
@@ -264,6 +269,10 @@ public class Empleado implements Serializable{
 	public static long getSerialversionuid() {
 		return serialVersionUID;
 	}
+
+
+
+	
 	
 	
 	

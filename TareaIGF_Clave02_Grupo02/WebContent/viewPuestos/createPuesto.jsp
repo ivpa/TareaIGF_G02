@@ -1,3 +1,33 @@
+<%@page import="sv.edu.ues.igf115.clave02.dominio.Puesto"%>
+<%@page import="sv.edu.ues.igf115.clave02.negocio.CtrlPuesto"%>
+<%@page import="java.math.BigDecimal"%>
+<%@page import="java.text.SimpleDateFormat"%>
+<%@page import="java.util.Date"%>
+<%@ page language="java" contentType="text/html; charset=ISO-8859-1" pageEncoding="ISO-8859-1"%>
+    
+    <%
+    	Short id = Short.parseShort(request.getParameter("id"));
+    	String nombre = request.getParameter("nombre");
+    	String perfil = request.getParameter("perfil");
+    	String fechaString = request.getParameter("fecha");
+
+    	SimpleDateFormat formatoDelTexto = new SimpleDateFormat("yyyy-MM-dd");
+    	 Date fechaFactura = null; //iniciamos fecha
+    	 fechaFactura = formatoDelTexto.parse(fechaString);
+    	 
+    	 BigDecimal sueldomin = new BigDecimal(request.getParameter("sueldomin"));
+    	 BigDecimal sueldomax = new BigDecimal(request.getParameter("sueldomax"));
+    	 String mensaje="";
+    	 Puesto puesto = new Puesto(id,nombre,perfil,fechaFactura,sueldomin,sueldomax);
+    	CtrlPuesto ctrl = new CtrlPuesto(); 
+ 	//ApplicationContext ac=
+    	//		WebApplicationContextUtils.getRequiredWebApplicationContext(getServletContext());
+    	//CtrlPuesto ctrl = (CtrlPuesto)ac.getBean("ctrlPuesto");
+    	 if(ctrl.crearPuesto(puesto))
+    		 mensaje="El registro fue guardado con exito";
+    	 else
+    		 mensaje = "Ya existe ese registro";
+    %>
 <!DOCTYPE html>
 <html lang="en">
 
@@ -46,7 +76,7 @@
                     <span class="icon-bar"></span>
                     <span class="icon-bar"></span>
                 </button>
-                <a class="navbar-brand" href="index.html">Inicio</a>
+                <a class="navbar-brand" href="../index.html">Inicio</a>
             </div>
             <!-- Top Menu Items -->
             <ul class="nav navbar-right top-nav">
@@ -78,30 +108,30 @@
                     <li>
                         <a href="javascript:;" data-toggle="collapse" data-target="#demo"><i class="fa fa-fw fa-arrows-v"></i> Mantenimiento PLanilla <i class="fa fa-fw fa-caret-down"></i></a>
                         <ul id="demo" class="collapse">
-                              <li>
-                                <a href="viewEmpleado/Empleados.html">Empleado</a>
+                                   <li>
+                                <a href="../viewEmpleado/Empleados.html">Empleado</a>
                             </li>
                             <li>
-                                <a href="viewPuestos/Puestos.html">Puesto</a>
+                                <a href="../viewPuestos/Puestos.html">Puesto</a>
                             </li>
                             <li>
-                                <a href="viewBoletaPago">Boleta Pago</a>
+                                <a href="../viewBoletaPago/BoletaPago.html">Boleta Pago</a>
                             </li>
                             <li>
-                                <a href="viewOficina/oficinas.html">Oficina</a>
+                                <a href="../viewOficina/oficinas.html">Oficina</a>
                             </li>
                            
                             <li>
-                                <a href="viewBoletaPagoDescuento">Boleta pago descuento</a>
+                                <a href="../viewBoletaPagoDescuento/BoletaPagoDescuento.html">Boleta pago descuento</a>
                             </li>
                             <li>
-                                <a href="viewTipoDescuento/TipoDescuento.html">Tipos descuentos</a>
+                                <a href="../viewTipoDescuento/TipoDescuento.html">Tipos descuentos</a>
                             </li>
 							 <li>
-                                <a href="viewDepartamento/Departamento.html">Departamentos</a>
+                                <a href="../viewDepartamento/Departamento.html">Departamentos</a>
                             </li>
                              <li>
-                                <a href="viewMunicipio/Municipio.html">Municipio</a>
+                                <a href="../viewMunicipio/Municipio.html">Municipio</a>
                             </li>
 
                     </li>
@@ -123,7 +153,7 @@
                         </h1>
                         <ol class="breadcrumb">
                             <li class="active">
-                                <i class="fa fa-dashboard"></i> Eliminar Puesto
+                                <i class="fa fa-dashboard"></i> Crear puesto
                             </li>
                         </ol>
                     </div>
@@ -132,13 +162,10 @@
 
                 <div class="row">
                     <div class="col-lg-12">
-                      <h3>Ingrese id del puesto a eliminar</h3>
-                      	<form action="deletePuesto.jsp" method="post">
-                      		Id puesto:<br>
-                      		<input type="text" name="id"><br><br>
-                      		<input type="submit" class="btn btn-primary" value="Aceptar"/>
-                     	 
-                     	</form>
+                    <div class="alert alert-success" role="alert">
+						 <%=mensaje %>
+					</div>
+                       
                     </div>
                 </div>
                 <!-- /.row -->

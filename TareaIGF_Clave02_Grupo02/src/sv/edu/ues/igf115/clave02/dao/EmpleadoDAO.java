@@ -11,6 +11,7 @@ import org.hibernate.criterion.Restrictions;
 
 import sv.edu.ues.igf115.clave02.datos.HibernateUtil;
 import sv.edu.ues.igf115.clave02.dominio.Empleado;
+import sv.edu.ues.igf115.clave02.dominio.Puesto;
 
 public class EmpleadoDAO {
 	
@@ -35,7 +36,7 @@ public class EmpleadoDAO {
 	public void guardaActualiza(Empleado empleado){
 		try {
 			iniciaOperacion();
-			sesion.save(empleado);
+			sesion.saveOrUpdate(empleado);
 			tx.commit();
 			sesion.flush();
 		} catch (HibernateException he) {
@@ -85,7 +86,15 @@ public class EmpleadoDAO {
 		sesion.close();
 		return id;
 	}
-
+	public int daEmpleadoByPuesto(Puesto puesto){
+		sesion = sessionfactory.openSession();
+		Criteria criteria = sesion.createCriteria(Empleado.class)
+							.add(Restrictions.eqOrIsNull("id_puesto", puesto));
+		int em = criteria.list().size();
+		sesion.close();
+		return em;
+	
+	}
 	public List<Empleado> daEmpleados(){
 		sesion = sessionfactory.openSession();
 		Criteria criteria = sesion.createCriteria(Empleado.class);

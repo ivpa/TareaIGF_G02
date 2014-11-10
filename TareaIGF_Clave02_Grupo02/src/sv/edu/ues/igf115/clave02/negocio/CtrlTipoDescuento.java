@@ -45,5 +45,13 @@ public class CtrlTipoDescuento {
 	public TipoDescuento daTipoDescuentoById(String id){
 		return daoTipoDescuento.daTipoDescuentoById(id);
 	}
+	
+	public boolean actualizarTipoDescuento(TipoDescuento tipo){
+		if (daoTipoDescuento.daTipoDescuentoById(tipo.getId())!=null) {
+			
+			daoTipoDescuento.guardaActualiza(tipo);
+			return true;
+		}else{return false;}
+	}
 	}
 	

@@ -2,6 +2,7 @@ package sv.edu.ues.igf115.clave02.negocio;
 
 import java.util.List;
 
+import sv.edu.ues.igf115.clave02.dao.EmpleadoDAO;
 import sv.edu.ues.igf115.clave02.dao.PuestoDAO;
 import sv.edu.ues.igf115.clave02.dominio.Puesto;
 import java.lang.*;
@@ -38,12 +39,15 @@ public boolean actualizaPuesto(Puesto puesto){
 		
 	}
 public boolean eliminarPuesto(Short id){
-	
+	boolean retornar = false;
 	if (daoPuesto.daPuestoById(id)!=null) {
+		if(new EmpleadoDAO().daEmpleadoByPuesto(daoPuesto.daPuestoById(id))==0){
 		daoPuesto.eliminar(daoPuesto.daPuestoById(id));
-		return true;
+		retornar = true;}
+		return retornar;
 	}
 	else
 		return false;
 }
+
 }

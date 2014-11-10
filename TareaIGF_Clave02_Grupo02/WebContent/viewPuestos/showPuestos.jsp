@@ -1,21 +1,32 @@
+<%@page import="java.util.List"%>
+
 <%@page import="sv.edu.ues.igf115.clave02.negocio.CtrlPuesto"%>
+<%@page import="sv.edu.ues.igf115.clave02.dominio.*" %>
 <%@ page language="java" contentType="text/html; charset=ISO-8859-1"
     pageEncoding="ISO-8859-1"%>
-    
- <%
- 	String mensaje="";
- 
- 	Short id = Short.parseShort(request.getParameter("id"));
- 	CtrlPuesto ctrl = new CtrlPuesto();
- 	
- 	if(ctrl.eliminarPuesto(id))
- 		mensaje="El puesto fue eliminado con exito";
- 	else
- 		mensaje = "El puesto no existe";
- 
- 	
- 	
- %>   
+<%
+	String mensaje="<table class=\"table\" ><tr><b>"+"<td>id Puesto</td> "+"<td>Nombre</td> "+"<td>Perfil </td>"+"<td>Fecha </td>"+"<td> Sueldo min </td>"+"<td>Sueldo max</td>"+"</b></tr>";
+
+	CtrlPuesto ctrl = new CtrlPuesto(); 
+	List<Puesto> listaPuesto = ctrl.listaPuestos();
+	
+	int numeroPuesto = listaPuesto.size();
+	
+	if(listaPuesto.isEmpty())
+		mensaje = "No hay puestos";
+	else
+	{
+		Puesto puestoActual;
+		for(int i=0;i<numeroPuesto;i++){
+			puestoActual = (Puesto)listaPuesto.get(i);
+			mensaje+="<tr>"+"<td>"+puestoActual.getId()+"</td>"+"<td>"+puestoActual.getNombrePuesto()+"</td> "
+					+"<td>"+puestoActual.getPerfilPuesto()+"</td>"+"<td>"+puestoActual.getFechaIng().toString().substring(0,10)+"</td>"
+					+"<td>"+puestoActual.getSueldoMin()+"</td> "+"<td>"+puestoActual.getSueldoMax()+"</td> </tr>";
+					
+		}
+		mensaje+="</table>";
+	}
+%>
 <!DOCTYPE html>
 <html lang="en">
 
@@ -96,30 +107,30 @@
                     <li>
                         <a href="javascript:;" data-toggle="collapse" data-target="#demo"><i class="fa fa-fw fa-arrows-v"></i> Mantenimiento PLanilla <i class="fa fa-fw fa-caret-down"></i></a>
                         <ul id="demo" class="collapse">
-                             <li>
-                                <a href="viewEmpleado/Empleados.html">Empleado</a>
+                                    <li>
+                                <a href="../viewEmpleado/Empleados.html">Empleado</a>
                             </li>
                             <li>
-                                <a href="viewPuestos/Puestos.html">Puesto</a>
+                                <a href="../viewPuestos/Puestos.html">Puesto</a>
                             </li>
                             <li>
-                                <a href="viewBoletaPago">Boleta Pago</a>
+                                <a href="../viewBoletaPago/BoletaPago.html">Boleta Pago</a>
                             </li>
                             <li>
-                                <a href="viewOficina/oficinas.html">Oficina</a>
+                                <a href="../viewOficina/oficinas.html">Oficina</a>
                             </li>
                            
                             <li>
-                                <a href="viewBoletaPagoDescuento">Boleta pago descuento</a>
+                                <a href="../viewBoletaPagoDescuento/BoletaPagoDescuento.html">Boleta pago descuento</a>
                             </li>
                             <li>
-                                <a href="viewTipoDescuento/TipoDescuento.html">Tipos descuentos</a>
+                                <a href="../viewTipoDescuento/TipoDescuento.html">Tipos descuentos</a>
                             </li>
 							 <li>
-                                <a href="viewDepartamento/Departamento.html">Departamentos</a>
+                                <a href="../viewDepartamento/Departamento.html">Departamentos</a>
                             </li>
                              <li>
-                                <a href="viewMunicipio/Municipio.html">Municipio</a>
+                                <a href="../viewMunicipio/Municipio.html">Municipio</a>
                             </li>
                     </li>
                    
@@ -140,7 +151,7 @@
                         </h1>
                         <ol class="breadcrumb">
                             <li class="active">
-                                <i class="fa fa-dashboard"></i>Eliminar  puesto
+                                <i class="fa fa-dashboard"></i>Mostrar  puesto
                             </li>
                         </ol>
                     </div>
@@ -148,11 +159,8 @@
                 <!-- /.row -->
 
                 <div class="row">
-                    <div class="col-lg-12" >
-                    <div class="alert alert-success" role="alert"">
-                    <%=mensaje %>
-                    </div>		
-                      
+                    <div class="col-lg-12">
+                       <%= mensaje %>
                     </div>
                 </div>
                 <!-- /.row -->

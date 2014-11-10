@@ -90,30 +90,30 @@
                     <li>
                         <a href="javascript:;" data-toggle="collapse" data-target="#demo"><i class="fa fa-fw fa-arrows-v"></i> Mantenimiento Oficina <i class="fa fa-fw fa-caret-down"></i></a>
                         <ul id="demo" class="collapse">
-                              <li>
-                                <a href="viewEmpleado/Empleados.html">Empleado</a>
+                                    <li>
+                                <a href="../viewEmpleado/Empleados.html">Empleado</a>
                             </li>
                             <li>
-                                <a href="viewPuestos/Puestos.html">Puesto</a>
+                                <a href="../viewPuestos/Puestos.html">Puesto</a>
                             </li>
                             <li>
-                                <a href="viewBoletaPago">Boleta Pago</a>
+                                <a href="../viewBoletaPago/BoletaPago.html">Boleta Pago</a>
                             </li>
                             <li>
-                                <a href="viewOficina/oficinas.html">Oficina</a>
+                                <a href="../viewOficina/oficinas.html">Oficina</a>
                             </li>
                            
                             <li>
-                                <a href="viewBoletaPagoDescuento">Boleta pago descuento</a>
+                                <a href="../viewBoletaPagoDescuento/BoletaPagoDescuento.html">Boleta pago descuento</a>
                             </li>
                             <li>
-                                <a href="viewTipoDescuento/TipoDescuento.html">Tipos descuentos</a>
+                                <a href="../viewTipoDescuento/TipoDescuento.html">Tipos descuentos</a>
                             </li>
 							 <li>
-                                <a href="viewDepartamento/Departamento.html">Departamentos</a>
+                                <a href="../viewDepartamento/Departamento.html">Departamentos</a>
                             </li>
                              <li>
-                                <a href="viewMunicipio/Municipio.html">Municipio</a>
+                                <a href="../viewMunicipio/Municipio.html">Municipio</a>
                             </li>
 
                     </li>

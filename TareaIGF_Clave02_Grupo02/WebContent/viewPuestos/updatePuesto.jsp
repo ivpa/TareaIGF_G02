@@ -1,3 +1,38 @@
+<%@page import="sv.edu.ues.igf115.clave02.negocio.CtrlPuesto"%>
+
+
+<%@page import="sv.edu.ues.igf115.clave02.dominio.Puesto"%>
+<%@ page language="java" contentType="text/html; charset=ISO-8859-1"
+    pageEncoding="ISO-8859-1"%>
+    
+<%
+	String mensaje="<h3>Modificar puesto</h3>";
+	String id = request.getParameter("id");
+
+	CtrlPuesto ctrl = new CtrlPuesto();
+	Puesto puesto =ctrl.daPuestoById(new Short(id)); 
+	String nombre="";
+	String perfil="";
+	String fecha="";
+	String sueldomin="";
+	String sueldomax="";
+	
+	if(puesto!=null){
+		
+		nombre = puesto.getNombrePuesto();
+		perfil = puesto.getPerfilPuesto();
+		fecha = puesto.getFechaIng().toString().substring(0,10);
+		sueldomin = puesto.getSueldoMin().toString();
+		sueldomax = puesto.getSueldoMax().toString();
+	}
+	else{
+		id ="No exite puesto";
+	}
+	
+	
+	
+%>    
+
 <!DOCTYPE html>
 <html lang="en">
 
@@ -46,7 +81,7 @@
                     <span class="icon-bar"></span>
                     <span class="icon-bar"></span>
                 </button>
-                <a class="navbar-brand" href="index.html">Inicio</a>
+                <a class="navbar-brand" href="../index.html">Inicio</a>
             </div>
             <!-- Top Menu Items -->
             <ul class="nav navbar-right top-nav">
@@ -78,32 +113,31 @@
                     <li>
                         <a href="javascript:;" data-toggle="collapse" data-target="#demo"><i class="fa fa-fw fa-arrows-v"></i> Mantenimiento PLanilla <i class="fa fa-fw fa-caret-down"></i></a>
                         <ul id="demo" class="collapse">
-                             <li>
-                                <a href="viewEmpleado/Empleados.html">Empleado</a>
+                                   <li>
+                                <a href="../viewEmpleado/Empleados.html">Empleado</a>
                             </li>
                             <li>
-                                <a href="viewPuestos/Puestos.html">Puesto</a>
+                                <a href="../viewPuestos/Puestos.html">Puesto</a>
                             </li>
                             <li>
-                                <a href="viewBoletaPago">Boleta Pago</a>
+                                <a href="../viewBoletaPago/BoletaPago.html">Boleta Pago</a>
                             </li>
                             <li>
-                                <a href="viewOficina/oficinas.html">Oficina</a>
+                                <a href="../viewOficina/oficinas.html">Oficina</a>
                             </li>
                            
                             <li>
-                                <a href="viewBoletaPagoDescuento">Boleta pago descuento</a>
+                                <a href="../viewBoletaPagoDescuento/BoletaPagoDescuento.html">Boleta pago descuento</a>
                             </li>
                             <li>
-                                <a href="viewTipoDescuento/TipoDescuento.html">Tipos descuentos</a>
+                                <a href="../viewTipoDescuento/TipoDescuento.html">Tipos descuentos</a>
                             </li>
 							 <li>
-                                <a href="viewDepartamento/Departamento.html">Departamentos</a>
+                                <a href="../viewDepartamento/Departamento.html">Departamentos</a>
                             </li>
                              <li>
-                                <a href="viewMunicipio/Municipio.html">Municipio</a>
+                                <a href="../viewMunicipio/Municipio.html">Municipio</a>
                             </li>
-
                     </li>
                    
                 </ul>
@@ -123,7 +157,7 @@
                         </h1>
                         <ol class="breadcrumb">
                             <li class="active">
-                                <i class="fa fa-dashboard"></i> Panel Puesto
+                                <i class="fa fa-dashboard"></i>Modificar  puesto
                             </li>
                         </ol>
                     </div>
@@ -132,10 +166,21 @@
 
                 <div class="row">
                     <div class="col-lg-12">
-                       <a href="createPuesto.html" class="btn btn-primary btn-lg" role="button">Insertar puesto</a>
-                       <a href="updatePuesto.html" class="btn btn-primary btn-lg" role="button">Modificar puesto</a>
-                       <a href="deletePuesto.html" class="btn btn-primary btn-lg" role="button">Eliminar puesto</a>
-                       <a href="showPuestos.jsp" class="btn btn-primary btn-lg" role="button">Mostrar puestos</a>
+                       <%=mensaje %>
+                      
+                       <form action="output.jsp" method="post">
+                       Id puesto: <input type="text" value="<%=id %>"  name="idpuesto"><br>
+                       Nombre puesto: <input type="text"  value="<%=nombre%>" name="nombre"><br>
+                       
+                       Perfil puesto: <input type="text" value="<%=perfil%>" name="perfil"><br>
+                       
+                       Fecha: <input type="text" value="<%=fecha%>" name="fecha"><br>
+                       
+                       Sueldo min: <input type="text" value="<%=sueldomin%>" name="sueldomin"><br>
+                       
+                       Sueldo max: <input type="text" value="<%= sueldomax%>" name="sueldomax"><br>
+                       <input type="submit" value="Actualizar" class="btn btn-primary">
+                       </form>
                     </div>
                 </div>
                 <!-- /.row -->

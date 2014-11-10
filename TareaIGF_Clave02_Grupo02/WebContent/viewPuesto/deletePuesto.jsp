@@ -119,7 +119,7 @@
                                 <a href="viewDepartamento/Departamento.html">Departamentos</a>
                             </li>
                              <li>
-                                <a href="viewMunicipio/Municipio.html">Departamentos</a>
+                                <a href="viewMunicipio/Municipio.html">Municipio</a>
                             </li>
                     </li>
                    
